@@ -1,0 +1,352 @@
+<section class="subsection color--radiant" id="semiChead">
+    <div class="grid-wrapper">
+        <div class="logo"></div>
+        <h1>Semiclassical spin wave theory of general single-Q structures</h1>
+        <div class="description">
+            <i>"This.. is the business.. we've chosen"</i> - Lee Strasberg in 'The Godfather I and The Godfather II'
+        </div>
+    </div>
+</section>
+
+<section class="blank" id="generalHamiltonian">
+    <div class="grid-wrapper">
+        <div class="header">
+            <div class="logo"></div>
+            <div class="section">Spin Hamiltonian</div>
+        </div>
+        <content>
+            <h3>Now lets tie everything together...</h3>
+            <p>General spin Hamiltonian</p><br>
+            $$
+            H = \sum_{mi,nj} \mathbf{S}_{mi}^T \cdot J_{mi} \cdot \mathbf{S}_{nj} + \sum_{mi}\mathbf{S}_{mi}^T \cdot A_i \cdot \mathbf{S}_{mi} + \mu_B\mathbf{H}^T\sum_{mi}g_i\mathbf{S}_{mi}
+            $$<br>
+            <p>Where:</p><br>
+            <ul>
+                <li>$\mathbf{S}_{mi}$ column vector of spin operators at position $\mathbf{r}_{mi} = \mathbf{r}_m + t$
+                    <ul>
+                        <li>$m$ index of the unit cell</li>
+                        <li>$i$ index of the magnetic atom iin the unit cell</li>
+                    </ul>
+                </li>
+                <li>$J_{mi,nj}$ 3x3 exchange matrix</li>
+                <li>$A_i$ single ion anisotropy</li>
+                <li>$g_i$ g-tensor</li>
+                <li>$\mathbf{H}$ column vector of external magnetic field</li>
+                <li>$\mu_B$ Bohr magneton (0.05788 meV/T)</li>
+            </ul>
+        </content>
+    </div>
+</section>
+
+<section class="blank" id="matrixRotations">
+    <div class="grid-wrapper">
+        <div class="header">
+            <div class="logo"></div>
+            <div class="section">Rotation matrices</div>
+        </div>
+        <content>
+            <p>As we've seen, we need a lot of rotation matrices to convert vectors and reference frames</p>
+            <p>Rotation, inversion and reflection operations can be described by a multiplication with an orthogonal matrix $R$.</p>
+            <p>The $R$ transformation can be applied to the basis vectors of the coordinate system or to the objects themselves using $R^{−1}=R^T$.</p>
+            <h4>Transforming the basis vectors:</h4>
+            <ul><li>New components of polar vectors (e.g. position vector $\mathbf{r}_{mi}$ ):</li></ul>
+            $$\mathbf{v} = R\mathbf{v}'$$<br>
+            <ul><li>New components of axis vectors (e.g. spin vector $\mathbf{S}_{mi}$ ):</li></ul>
+            $$\mathbf{v} = \det (R)\cdot \mathbf{v}'$$<br>
+            <ul><li>New components of tensors (e.g. exchange matrix $J^{\alpha,\beta}$, correlation function $S^{\alpha,\beta}$):</li></ul>
+            $$T' = R^T T R$$
+        </content>
+    </div>
+</section>
+
+<section class="quote color--midnight" id="LSWT">
+    <div class="grid-wrapper">
+        <div class="logo"></div>
+        <blockquote>
+            <p>
+                To exactly (in an LSWT sense) solve the general Hamiltonian the magnetic structure has to be transformed into a ferromagnet. This is possible for single-k magnetic structures (with additional $k=0$ component). For multi-k magnetic structures an approximate magnetic supercell has to be defined.
+            </p>
+            <hr>
+            <cite>LSWT solution of the general spin Hamiltonian</cite>
+        </blockquote>
+    </div>
+</section>
+
+<section class="blank" id="MGS">
+    <div class="grid-wrapper">
+        <div class="header">
+            <div class="logo"></div>
+            <div class="section">Magnetic ground states</div>
+        </div>
+        <content>
+            <p>So we have the following 'exactly' solvable magnetic structures:</p>
+            <ul>
+                <li>Incommensurate spirals with ordering wave vector $Q$
+                    <ul>
+                        <li>Rotation of the n-th cell</li>
+                    </ul>
+                </li>
+            </ul><br>
+            $$\varphi_n = \mathbf{Q}\cdot\mathbf{r}_n$$<br>
+            <ul>
+                <ul>
+                    <li>Rotating coordinate system</li>
+                </ul>
+            </ul><br>
+            $$\mathbf{S}_{nj} = R(\mathbf{Q} \cdot \mathbf{r}_n)S_{nj}' R_n$$<br>
+            <ul>
+                <li>
+                    Magnetic moment direction within the unit cell
+                    <ul>
+                        <li>Additional local rotation independent of $n$</li>
+                    </ul>
+                </li>
+            </ul><br>
+            $$S_{nj}' = R_j'S_{nj}''$$
+        </content>
+    </div>
+</section>
+
+<section class="blank" id="MGS2">
+    <div class="grid-wrapper">
+        <div class="header">
+            <div class="logo"></div>
+            <div class="section">Magnetic ground states</div>
+        </div>
+        <content>
+            <p>The local spin rotation is now:</p>
+            $$
+            S_{nj}^{\alpha\prime} = \sum_\mu R_j^{\prime\alpha\mu} S_{nj}^{\prime\prime\mu}
+            $$
+            <p>Which can be rewritten as a multiplication with a complex and a real unit vector:</p>
+            $$ \begin{align}
+            \mathbf{u}_j^\alpha & = R_j^{\prime\alpha 1} + i R_j^{\prime\alpha 2} \\
+            \mathbf{v}_j^\alpha & = R_j^{\prime\alpha 3}
+            \end{align}$$
+            <p>Where:</p>
+            <ul>
+                <li>$\mathbf{v}_j$ is a unit vector parallel to $\mathbf{S}_{nj}$</li>
+                <li>$\mathbf{u}_j$ is a complex vector, $\Re \, u_j$ and $\Im \, u_j$ spanning the perpendicular space</li>
+            </ul>
+        </content>
+    </div>
+</section>
+
+<section class="blank" id="HamSym">
+    <div class="grid-wrapper">
+        <div class="header">
+            <div class="logo"></div>
+            <div class="section">Symmetries of the Hamiltonian</div>
+        </div>
+        <content>
+            <p>Now lets look at the symmetries of the Hamiltonian.</p>
+            <p>Lattice periodicity:</p>
+            $$J_{mi,nj} = J_{ij}(\mathbf{d})$$
+            <p>Invariance under exchange of two spins:</p>
+            $$J_{ij}(\mathbf{d}) = J_{ji}^T(-\mathbf{d})$$
+            <p>Invariance under the $R_n$ rotations:</p>
+            $$J_{ij}(\mathbf{d}) = R^T_n J_{ij}(\mathbf{d}) R_n, \; n = 1,2,3,...$$
+            <p>Fourier-transform of $J$:</p>
+            $$J_{ij}(\mathbf{k}) = \sum_\mathbf{d} J_{ij}(\mathbf{d}) e^{-i \mathbf{k} \cdot \mathbf{d}}$$
+            <p>And the identities:</p>
+            $$\begin{align} J_{ij}(\mathbf{k}) & = \overline{J_{ij}(-\mathbf{k})} \\ J_{ij}(\mathbf{k}) & = \overline{J_{ji}^T(\mathbf{k})} \end{align}$$
+
+        </content>
+    </div>
+</section>
+
+<section class="blank" id="HPapprox">
+    <div class="grid-wrapper">
+        <div class="header">
+            <div class="logo"></div>
+            <div class="section">Holstein-Primakoff approximation</div>
+        </div>
+        <content>
+            <p>How does this effect the Boson expansion of the spin ladder operators:</p>
+            $$ \begin{align}
+            {S_{nj}^{\prime\prime}}^+ & = \sqrt{2S_j} b_{nj},\\
+            {S_{nj}^{\prime\prime}}^- & = \sqrt{2S_j} b^{\dagger}_{nj},\\
+            {S_{nj}^{\prime\prime}}^Z & = S_j - b_{nj}^{\dagger}b_{nj}
+            \end{align}$$
+            <p>Bosonic commutator</p>
+            $$
+            \left[b_{mi}, b^{\dagger}_{nj} \right] = \delta_{mn}\delta_{ij}
+            $$
+            <p>Spin vector operator:</p>
+            $$
+            \mathbf{S}^{\prime}_{nj} = \sqrt{\frac{S_j}{2}}\left( \bar{\mathbf{u}}b_{nj} + \mathbf{u}_jb_{nj}^{\dagger} \right) + \mathbf{v}_j \left( S_j - b_{nj}^{\dagger} b_{nj}\right)
+            $$
+        </content>
+    </div>
+</section>
+
+<section class="blank" id="QuadHam1">
+    <div class="grid-wrapper">
+        <div class="header">
+            <div class="logo"></div>
+            <div class="section">Quadratic spin Hamiltonian</div>
+        </div>
+        <content>
+            <p>Now let's apply all of this to the Hamiltonian.</p>
+            <p>Hamiltonian in the rotating coordinate system:</p><br>
+            $$
+            H = \sum_{mi,nj} \mathbf{S}_{mi}^{\prime T}R_m^TJ_{mi,nj}R_n\mathbf{S}^{\prime}_{mn}
+            $$<br>
+            <p><i>Note that using the rotational symmetry of the Hamiltonian:</i></p><br>
+            $$
+            J_{mi,nj}^\prime = R_m^TJ_{mi,nj}R_n = J_{mi,nj}R_{n-m}
+            $$
+        </content>
+    </div>
+</section>
+
+<section class="blank" id="QuadHam2">
+    <div class="grid-wrapper">
+        <div class="header">
+            <div class="logo"></div>
+            <div class="section">Quadratic spin Hamiltonian</div>
+        </div>
+        <content>
+            <p>After transforming the operators from real space to reciprocal space</p>
+            $$
+            b_{mi} = \frac{1}{\sqrt{N}}\sum_{\mathbf{k} \in \text{B.Z}} b_i (\mathbf{k} ) e^{i\mathbf{k}\cdot\mathbf{r}_m}
+            $$
+            <p>The leading term for excitations is quadratic:</p>
+            $$
+            H = \sum_{\mathbf{k} \in \text{B.Z}} \mathbf{x}^\dagger(\mathbf{k})h(\mathbf{k})\mathbf{x}(\mathbf{k})
+            $$
+            <p>Where $\mathbf{x}(\mathbf{k})$ is a vector of spin operators:</p>
+            $$
+            \mathbf{x}(\mathbf{k}) = \left[ b_1(\mathbf{k}),...b_N(\mathbf{k}),b_1^\dagger(-\mathbf{k}),...,b_N^\dagger(-\mathbf{k}) \right]^T
+            $$
+            <p><i>Note! the length of $\mathbf{x}(\mathbf{k})$ is $2N$ where N is number of magnetic atoms in the unit cell</i></p>
+        </content>
+    </div>
+</section>
+
+<section class="blank" id="QuadHam3">
+    <div class="grid-wrapper">
+        <div class="header">
+            <div class="logo"></div>
+            <div class="section">Quadratic spin Hamiltonian</div>
+        </div>
+        <content>
+            <p>Which is in matrix form:</p>
+            $$
+            h(\mathbf{k}) = \begin{bmatrix} A(\mathbf{k})-C & B(\mathbf{k}) \\ B^\dagger(\mathbf{k}) & \bar{A}(-\mathbf{k})-C \end{bmatrix}
+            $$
+            <p>Where:</p>
+            $$ \begin{align}
+            A(\mathbf{k})^{i,j} & = \frac{\sqrt{S_i S_j}}{2}\mathbf{u}_i^T J_{ij}^\prime (-\mathbf{k})\bar{\mathbf{u}}_j , \\
+            B(\mathbf{k})^{i,j} & = \frac{\sqrt{S_i S_j}}{2}\mathbf{u}_i^T J_{ij}^\prime (-\mathbf{k})\mathbf{u}_j , \\
+            C(\mathbf{k})^{i,j} & = \delta_{ij}\sum_l S_l \mathbf{v}^T J_{il}^\prime(0)\mathbf{v}_l
+            \end{align}$$
+            <p><i>Note: $A(\mathbf{k})$ is Hermitian and C is real</i></p>
+        </content>
+    </div>
+</section>
+
+<section class="blank" id="QuadHam4">
+    <div class="grid-wrapper">
+        <div class="header">
+            <div class="logo"></div>
+            <div class="section">Quadratic spin Hamiltonian -  Zeeman Term</div>
+        </div>
+        <content>
+            <p>The Zeeman term is given by:</p>
+            <ul>
+                <li>Operator form:</li>
+            </ul>
+            $$H^Z = -\mu_B\mathbf{H}^T \sum_{\mathbf{k}j} g_j\mathbf{v}_j b^\dagger_j(\mathbf{k})b_j(\mathbf{k})$$
+            <ul>
+                <li>Matrix form:</li>
+            </ul>
+            $$A^Z(\mathbf{k})^{i,j} = - \frac{1}{2} \mu_B \delta_{ij} \mathbf{H}^T g_i \mathbf{v}_i$$
+        </content>
+    </div>
+</section>
+
+<section class="blank" id="SolvingHam">
+    <div class="grid-wrapper">
+        <div class="header">
+            <div class="logo"></div>
+            <div class="section">Diagonalization of the spin Hamiltonian</div>
+        </div>
+        <content>
+            <p>To diagonalize the Hamiltonian we need a $T$ linear transformation $x_i = \sum_j T_{ij} x_j^\prime $ which fulfills:</p>
+            <ul>
+                <li>$h(\mathbf{k})$ is diagomnal in the new basis</li>
+                <li>The new boson operators also fulfill the commutation relations:</li>
+            </ul>
+            $$
+            \left[\mathbf{x}^\prime, {\mathbf{x}^\prime}^\dagger \right] = \mathbf{x}^\prime ({\mathbf{x}^\prime}^\star)^T - (\mathbf{x}^{\prime\star} \mathbf{x}^{\prime T})^T = g
+            $$
+            <p>Where:</p>
+            $$
+            g = \begin{bmatrix}1 & 0 \\ 0 & -1 \end{bmatrix}
+            $$
+            <p>We will use the method of Colpa which include the Cholesky decomposition of $h(\mathbf{k})$ and solving an eigenvalue problem of a Hermitian matrix.</p>
+            <p>Result:</p>
+            <ul>
+                <li>$2N$ spin wave energies $\mathbf{E}_i$ with both positive and negative sign</li>
+                <li>$T$ transformation from the atomic modes to normal modes $\rightarrow$ can be used to calculate spin-spin correlation function</li>
+            </ul>
+        </content>
+    </div>
+</section>
+
+<section class="blank" id="SpinCorrRF">
+    <div class="grid-wrapper">
+        <div class="header">
+            <div class="logo"></div>
+            <div class="section">Spin-spin correlation function in rotating frame</div>
+        </div>
+        <content>
+            <p>General formula:</p>
+            $$
+            S^{\prime\alpha\beta}(\mathbf{k},\omega) = \frac{1}{2N}\sum_{i=1}^{2N} S^{\prime\alpha\beta}_i \delta(\omega \pm \omega_i) \left( n(\omega) + \frac{1}{2}(1\pm 1) \right)
+            $$
+            <p>Boson population is described by the Bose statistics:</p>
+            $$
+            n(\omega_i) = \frac{1}{e^{\hbar\omega_i / k_B T} - 1}
+            $$
+            <p>The dimensions of $S^{\prime\alpha\beta}$ are $3 \times 3 \times 2N$ for each $\mathbf{k}$ point</p>
+        </content>
+    </div>
+</section>
+
+<section class="blank" id="SpinCorrLF">
+    <div class="grid-wrapper">
+        <div class="header">
+            <div class="logo"></div>
+            <div class="section">Spin-spin correlation function in laboratory frame</div>
+        </div>
+        <content>
+            <p>Transforming from rotating frame to the laboratory frame:</p>
+            $$
+            \left< \mathbf{S}_{mi} \mathbf{S}_{nj}^T (\tau) \right> = \left< R_m \mathbf{S}_{mi}^\prime \mathbf{S}_{nj}^{\prime T} (\tau) R_n^T \right> = \left< \mathbf{S}_{mi}^\prime \mathbf{S}_{nj}^{\prime T} (\tau) \right> R^T_{n-m}
+            $$
+            <p>Using Rodriguez’s formula:</p>
+            $$
+            R(\mathbf{Q}\cdot\mathbf{r}_n) = e^{i\mathbf{Q}\cdot\mathbf{r}_n}R_1 + e^{-i\mathbf{Q}\cdot\mathbf{r}_n}\bar{R}_1 + R_2
+            $$
+            <p>Correlation function:</p>
+            $$
+            S(\mathbf{k}, \omega) = S^{\prime}(\mathbf{k},\omega)R_2 + S^{\prime}(\mathbf{k} + \mathbf{Q},\omega)R_1 + S^{\prime}(\mathbf{k} - \mathbf{Q},\omega)\bar{R}_1
+            $$
+            <p>In $\mathbf{Q} \neq 0 $ magnetic structure generally $3N$ spin wave modes can be observed: $\omega (\mathbf{k})$ and $\omega (\mathbf{k}\pm \mathbf{Q})$. Dimensions of $S^{\alpha\beta}$ is $3 \times 3 \times 3 \times 2N$ for each $\mathbf{k}$ point.</p>
+        </content>
+    </div>
+</section>
+© 2019 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Help
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About

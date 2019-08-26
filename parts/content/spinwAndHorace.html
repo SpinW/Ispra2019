@@ -1,0 +1,394 @@
+    <section class="subsection color--radiant" id="interface_head">
+        <div class="grid-wrapper">
+            <div class="logo"></div>
+            <h1> The Horace-SpinW interface </h1>
+            <div class="description">
+                How to use a SpinW model in Horace for fitting
+            </div>
+        </div>
+    </section>
+
+    <section class="blank" id="interface1">
+        <div class="grid-wrapper">
+            <div class="header">
+                <div class="logo"></div>
+                <div class="section">Horace recap</div>
+            </div>
+            <content>
+                <h3> Defining models in Horace: a recap </h3>
+                <p> Horace accepts a variety of functions to model data: </p>
+                <table style="width:70%">
+                    <tr> <td> <code> y = fn(x1, x2, ..., xn, pars) </code> </td> <td> Functions operating directly on data coordinates (e.g. gaussian peaks) </td>
+                    <tr> <td> <code> s = fn(qh, qk, ql, en, pars) </code> </td> <td> Model $S(\mathbf{q},\omega)$ functions evaluated for each $\omega$ </td>
+                    <tr> <td> <code> [w, s] = fn(qh, qk, ql, pars) </code> </td> <td> General model $S(\mathbf{q},\omega)$ functions </td>
+                </table>
+                <p> In all cases, immediately following the coordinates, Horace expects a vector of parameter values to be fitted </p>
+                <p> After this parameter values, Horace also accepts any other input variables as model constants which will be passed to the model </p>
+                <p> The fit functions generally only accept the <code> s = fn(qh, qk, ql, en, pars) </code> form for $S(\mathbf{q}, \omega)$ models,
+                    so energy convolution needs to be done by the modelling code </p>
+            </content>
+        </div>
+    </section>
+
+    <section class="blank" id="interface2">
+        <div class="grid-wrapper">
+            <div class="header">
+                <div class="logo"></div>
+                <div class="section">SpinW recap</div>
+            </div>
+            <content>
+                <h3> The SpinW <code>spinwave</code> method: a recap </h3>
+                <p> In order to calculate the spin wave spectrum in SpinW, something like the following needs to be used: </p>
+                <figure class="code">
+                    <pre><code class="matlab">
+spec = sw_obj.spinwave(hkl, 'hermit', false, 'formfact', true);
+spec = sw_egrid(spec, 'component', 'Sperp', 'Evect', 0:0.05:10);
+                    </code></pre>
+                </figure>
+                <p> Comparing with what Horace needs, we notice that: </p>
+                <div style="margin-left:40px">
+                    <ul>
+                        <li> The model (fittable) parameters are not set here, but much earlier in the definition of the model </li>
+                        <li> We need the combination of both <code> spinwave </code> and <code> sw_egrid </code> to get a function of the
+                            form <code> s = fn(qh, qk, ql, en, pars) </code> which Horace needs </li>
+                    </ul>
+                </div>
+                <p> Fortunately the wrapped model function is provided in SpinW: the method <code> spinw.horace_sqw </code>
+            </content>
+        </div>
+    </section>
+
+    <section class="blank" id="interface3">
+        <div class="grid-wrapper">
+            <div class="header">
+                <div class="logo"></div>
+                <div class="section">spinw.horace_sqw</div>
+            </div>
+            <content>
+                <h3> The <code>spinw.horace_sqw</code> method </h3>
+                <p> <code> horace_sqw </code> has the same signature as a standard Horace $S(\mathbf{q}, \omega)$ function,
+                    <code> horace_sqw(qh, qk, ql, en, pars, varargin) </code> </p>
+                <p> So, it can be used directly in a Horace <code> multifit_sqw </code> call. <p>
+                <p> In order to define which model parameter is to be varied in the fit, you have to give <code> horace_sqw </code>
+                    a <code> mat </code> parameter which is a cell array of the matrix names to be varied in the order they appear in
+                    the <code> pars </code> vector </p>
+                <p> Since the parameters of <code> pars </code> are scalars, if the matrix you refer to is not isotropic (e.g. it's not
+                    representing a Heisenberg interaction), a special syntax to refer to which matrix element(s) needs to vary has to be used. </p>
+            </content>
+        </div>
+    </section>
+
+    <section class="blank" id="interface4">
+        <div class="grid-wrapper">
+            <div class="header">
+                <div class="logo"></div>
+                <div class="section">spinw.horace_sqw</div>
+            </div>
+            <content>
+                <p> A simple example: </p>
+                <div class="container" style="display: grid;    grid-template-columns: 55% 5% auto;
+                                                                grid-template-rows: 60% 5% auto; height: 100%;">
+                    <div style="grid-column-start:1; grid-column-end:2; grid-row-start:1; grid-row-end:2">
+                        <figure class="code">
+                            <pre><code class="matlab">
+J = 1.2;
+K = 0.1;
+tri = sw_model('triAF', J);
+tri.addmatrix('label', 'K', 'value', diag([0 0 K]));
+tri.addaniso('K');
+
+fwhm = 0.75;
+scalefactor = 1;
+ws = cut_sqw(sqw_file, [0.05], [-0.1, 0.1], [-0.1, 0.1], [0.5]);
+fitobj = multifit_sqw(ws);
+fitobj.set_fun(@tri.horace_sqw);
+fitobj.set_pin({[J K fwhm scalefactor], 'mat', {'J_1', 'K(3,3)'}, ...
+    'hermit', false, 'useFast', true, 'formfact', true});
+ws_sim = fitobj.simulate();
+[ws_fit, fit_dat] = fitobj.fit()
+                            </code></pre>
+                        </figure>
+                    </div>
+                    <div style="grid-column-start:3; grid-column-end:4; grid-row-start:1; grid-row-end:2">
+                        <p> The vector <code> [J K fwhm scalefactor] </code> is the parameters vector. We need to tell SpinW that it corresponds to the
+                            Heisenberg nearest neighbour interaction <code> J_1 </code> and the easy-place anisotropy <code> K </code> </p>
+                        <p> Because <code> J </code> is isotropic, we can just give the matrix name in <code> mat </code> </p>
+                        <p> But, <code> K </code> only applies to the <i>zz</i> element, so we need to tell SpinW that in <code> mat </code> </p>
+                        <p> <code> fwhm </code> and <code> scalefactor </code> are parameters which are added by <code> horace_sqw </code>
+                            to denote the energy FWHM and intensity scale factor (may be omitted, in which case it is taken to be unity and fixed) </p>
+                        <p> The other (non-varying) parameters we pass to <code> multifit </code> are just standard SpinW keyword arguments </p>
+                    </div>
+            </content>
+        </div>
+    </section>
+
+    <section class="blank" id="interface5">
+        <div class="grid-wrapper">
+            <div class="header">
+                <div class="logo"></div>
+                <div class="section">spinw.horace_sqw</div>
+            </div>
+            <content>
+                <p> There are a few keyword arguments unique to <code> horace_sqw </code> </p>
+                <div style="margin-left:40px">
+                    <ul>
+                        <li> <code> 'useFast' </code> - This tells <code> horace_sqw </code> to use a faster but slightly less accurate
+                            code than <code> spinwave. </code> In particular, this code achieves a speed gain by: </li>
+                        <div style="margin-left:40px">
+                            <ul>
+                                <li> Only calculating <code> Sperp </code> rather than full $S^{\alpha\beta}$ tensor </li>
+                                <li> Only calculating magnon creation (positive energy / neutron energy loss) modes. </li>
+                                <li> Ignoring twins </li>
+                            </ul>
+                        </div>
+                        <li> <code> 'partrans' </code> - A function handle to transform the input parameters received from Horace before
+                            passing to SpinW </li>
+                        <li> <code> 'coordtrans' </code> - A $4\times 4$ matrix to transform the input $(Q_h, Q_k, Q_l, \hbar\omega)$ coordinates
+                            received from Horace before passing to SpinW </li>
+                        <li> <code> 'resfun' </code> - This is tells <code> horace_sqw </code> what function to use for the energy
+                            convolution. Options are: </li>
+                        <div style="margin-left:40px">
+                            <ul>
+                                <li> <code> 'gauss' </code> - a gaussian (one parameter: fwhm) </li>
+                                <li> <code> 'lor' </code> - a lorentzian (one parameter: fwhm) </li>
+                                <li> <code> 'voigt' </code> - a pseudovoigt (two parameters: fwhm and lorentzian fraction) </li>
+                                <li> <code> 'sho' </code> - a damped harmonic oscilator (parameters: Gamma Temperature Amplitude) </li>
+                                <li> A function handle to a function which will be accepted by Horace's <code> disp2sqw </code> method </li>
+                            </ul>
+                        </div>
+                    </ul>
+                </div>
+                <p> <code> horace_sqw </code> appends the parameters needed by <code> resfun </code> to the end of the parameter
+                    vector and then adds a scale factor between the data and calculation after that
+            </content>
+        </div>
+    </section>
+
+    <section class="blank" id="interface6">
+        <div class="grid-wrapper">
+            <div class="header">
+                <div class="logo"></div>
+                <div class="section">matparser</div>
+            </div>
+            <content>
+                <h3> The <code> 'mat' </code> argument </h3>
+                <p> Horace expects a parameter vector, so we have to tell SpinW which parameter is which </p>
+                <p> In simple cases, just the name of the corresponding SpinW matrix, or a string denoting which single matrix element suffice </p>
+                <p> For more complicated cases, an additional parameter <code> 'selector', </code> a $3\times3$ logical matrix needs to be used </p>
+                <p> This tells the <code> matparser </code> function which SpinW uses to decode the <code> 'mat' </code> argument which matrix
+                    elements the parameter corresponds to </p>
+                <div class="container" style="display: grid;    grid-template-columns: 55% 5% auto;
+                                                                grid-template-rows: 60% 5% auto; height: 100%;">
+                    <div style="grid-column-start:1; grid-column-end:2; grid-row-start:1; grid-row-end:2">
+                        <figure class="code">
+                            <pre><code class="matlab">Dvec = [0.1 0.2 0.3];
+swobj.addmatrix('label', 'DM', 'value', Dvec);
+swobj.addcoupling('mat', 'DM', 'bond', 1);
+
+sel(:,:,1) = [0 0 0; 0 0 1; 0 -1 0];    % Dx
+sel(:,:,2) = [0 0 1; 0 0 0; -1 0 0];    % Dy
+sel(:,:,3) = [0 1 0; -1 0 0; 0 0 0];    % Dz
+
+fitobj.set_fun(@swobj.horace_sqw);
+fitobj.set_pin({Dvec, 'mat', {'DM', 'DM', 'DM'}, ...
+    'selector', sel, 'hermit', false})
+fitobj.fit()</code></pre>
+                        </figure>
+                    </div>
+                    <div style="grid-column-start:3; grid-column-end:4; grid-row-start:1; grid-row-end:2">
+                        <p> <code> 'selector' </code> is a $3\times 3\times N$ array where $N$ is the number of parameters </p>
+                        <p> Each $3\times 3$ matrix denotes which elements of the corresponding matrix in <code> 'mat' </code> goes with that parameter </p>
+                    </div>
+            </content>
+        </div>
+    </section>
+
+</section>
+
+<section>
+    <section class="subsection color--radiant" id="pcsmo_head">
+        <div class="grid-wrapper">
+            <div class="logo"></div>
+            <h1> Example of Horace-SpinW integration </h1>
+            <div class="description">
+                Modelling spin waves in Pr(Ca<sub>0.9</sub>Sr<sub>0.1</sub>)<sub>2</sub>Mn<sub>2</sub>O<sub>7</sub>
+                <br>
+                Download the scripts here: <a href="matlab/pcsmo_eval.m" style="color: white"><code>pcsmo_eval.m</code></a>
+            </div>
+        </div>
+    </section>
+
+    <section class="showit color--dark" id="pcsmo1">
+        <div class="grid-wrapper">
+            <div class="header">
+                <div class="logo"></div>
+                <div class="section">Pr(Ca<sub>0.9</sub>Sr<sub>0.1</sub>)<sub>2</sub>Mn<sub>2</sub>O<sub>7</sub> Horace data</div>
+            </div>
+            <content>
+                <div class="profile">
+                    <div class="basics">
+                        <figure class="image" style="width: 80%; margin-right:10%">
+                            <img src="images/pcsmo_fig2.png" alt="Fig 2 of Johnstone et al.">
+                        </figure>
+                        <div class="name">Published data and simulation of Pr(Ca$_{0.9}$Sr$_{0.1}$)$_2$Mn$_2$O$_7$</div>
+                        <div class="role"> </div>
+                    </div>
+                    <div id="details">
+                        <h3> Pr(Ca<sub>0.9</sub>Sr<sub>0.1</sub>)<sub>2</sub>Mn<sub>2</sub>O<sub>7 Horace data </h3>
+                        <p> The <code> .sqw </code> files should be in the folders previously used for Horace </p>
+                        <p> If you're not using a desktop, you can get the files from:
+                            <a href="https://www.dropbox.com/s/dv35ljlp04y1jf6/pcsmo.zip?dl=0" style="color: blue" target="_blank">Dropbox</a>
+                        <p> Make 2D slices along $(h00)$ and energy transfer and compare to figure 2 of <a href="https://arxiv.org/pdf/1210.7108.pdf"
+                                                                                                           style="color: blue" target="_blank">Johnstone et al.</a>
+                        <p> </p>
+                        <figure class="code">
+                            <pre><code class="matlab">
+ei = [25 35 50 70 140];
+proj = projaxes([1 0 0], [0 1 0]);
+for ii = 1:numel(ei);
+    sqw_file = sprintf('../aaa_my_work/pcsmo_ei%d_base.sqw', ei(ii));
+    ws_cut(ii) = cut_sqw(sqw_file, proj, [-5,0.025,5], [-0.2,0.2], ...
+        [-inf,inf], [ei(ii)/100]);
+    % Symmetrise about h=0
+    ws_cut(ii) = symmetrise_sqw(ws_cut(ii), [0 0 1], [0 1 0], [0 0 0]);
+    plot(ws_cut(ii))
+    lz 0 10
+    keep_figure;
+end
+                            </code></pre>
+                        </figure>
+                    </div>
+                </div>
+            </content>
+        </div>
+    </section>
+
+    <section class="blank color--dark" id="pcsmo2">
+        <div class="grid-wrapper">
+            <div class="header">
+                <div class="logo"></div>
+                <div class="section"> Background subtraction </div>
+            </div>
+            <content>
+                <h3> Background subtraction </h3>
+                <p> As in the Horace tutorials, make a cut at high $q$ and use replicate to generate a 2D background slice </p>
+                <p> Subtract this from the data and compare it to the paper </p>
+                <figure class="code">
+                    <pre><code class="matlab">
+for ii = 1:numel(ei)
+    idx = find(sum(ws_cut(ii).data.s,2)>0);
+    qmax = ws_cut(ii).data.p{1}(idx(end)) * 0.5;
+    ws_bkg(ii) = cut_sqw(ws_cut(ii), [qmax-0.1,qmax], []);
+    ws_sub(ii) = ws_cut(ii) - replicate(ws_bkg(ii), ws_cut(ii));
+    plot(ws_sub(ii))
+    lz 0 10
+    lx -2 2
+    keep_figure; 
+end
+                    </code></pre>
+                </figure>
+            </content>
+        </div>
+    </section>
+
+    <section class="blank color--dark" id="pcsmo3">
+        <div class="grid-wrapper">
+            <div class="header">
+                <div class="logo"></div>
+                <div class="section"> Evaluate the SpinW model </div>
+            </div>
+            <content>
+                <h3> Evaluate the SpinW model </h3>
+                <p> Use the code from the previous ("real world") tutorial to set up a SpinW model of the Goodenough model </p>
+                <p> Evaluate this model on the cuts you've made: </p>
+                <ul>
+                    <div style="margin-left: 40px">
+                        <li> Because the model had to use a larger ($2\times 2\times 1$) "structural" unit cell, we need to convert
+                            the $Q_h$ and $Q_k$ coordinates given by Horace (multiply them by 2) to get the SpinW equivalent: </li>
+                    </div>
+                    <figure class="code">
+                        <pre><code class="matlab">
+cpars = {'coordtrans', diag([2 2 1 1])}
+                        </code></pre>
+                    </figure>
+                    <div style="margin-left: 40px">
+                        <li> Add the usual SpinW options: </li>
+                    </div>
+                    <figure class="code">
+                        <pre><code class="matlab">
+cpars = {cpars{:}, 'mat', {'JF1', 'JA', 'JF2', 'JF3', 'Jperp', 'D(3,3)'}, ...
+    'hermit', false, 'optmem', 0, 'useFast', true, 'formfact', true, ...
+    'resfun', 'gauss'};
+                        </code></pre>
+                    </figure>
+            </content>
+        </div>
+    </section>
+
+    <section class="blank color--dark" id="pcsmo4">
+        <div class="grid-wrapper">
+            <div class="header">
+                <div class="logo"></div>
+                <div class="section"> Evaluate the SpinW model </div>
+            </div>
+            <content>
+                <p> Select the 170 meV dataset to see the overal dispersion (including gap) </p>
+                <p> Then set up a multifit object on this dataset - use a <code>dnd</code> object to save time
+                    (the <code>sqw</code> object will have ~100x the number of pixels) </p>
+                <p> Finally tell SpinW to use mex files to speed up the calculation and evaluate the SpinW model </p>
+                <figure class="code">
+                    <pre><code class="matlab">
+idx = 5;            % EIs: [25 35 50 70 140], index 5 == 140meV 
+fwhm = ei(idx)/30;  % Typical resolution ~ 3% of Ei  
+
+kk = multifit_sqw(d2d(ws_sub(idx)));
+kk = kk.set_fun (@pcsmo.horace_sqw, {[JF1 JA JF2 JF3 Jperp D fwhm] cpars{:}}); 
+kk = kk.set_free ([1, 1, 1, 1, 1, 1, 1]); 
+kk = kk.set_options ('list',2);  
+
+swpref.setpref('usemex',true);  
+% Time a single iteration 
+tic 
+wsim = kk.simulate; 
+t_spinw_single = toc;
+                    </code></pre>
+                </figure>
+            </content>
+        </div>
+    </section>
+
+    <section class="showit color--dark" id="pcsmo5">
+        <div class="grid-wrapper">
+            <div class="header">
+                <div class="logo"></div>
+                <div class="section"> Plot the simulation </div>
+            </div>
+            <content>
+                <div class="profile">
+                    <div class="basics">
+                        <figure class="image" style="width: 90%; margin-right:10%">
+                            <img src="images/pcsmo_spinw.png" alt="PCSMO data vs SpinW calculation">
+                        </figure>
+                        <div class="name">Published data and SpinW simulation of Pr(Ca$_{0.9}$Sr$_{0.1}$)$_2$Mn$_2$O$_7$</div>
+                        <div class="role"> </div>
+                    </div>
+                    <div id="details">
+                        <h3> Plot the simulation </h3>
+                        <p> Reflect the data back to the negative $Q_h$ side, remove the empty bins (with <code> compact </code>) <p>
+                        <p> Convert the data to a <code> d2d </code> object and then use <code> spaghetti_plot </code> to plot the
+                            data and simulation (already a <code> d2d </code> object) together </p>
+                        <p> </p>
+                        <figure class="code">
+                            <pre><code class="matlab">
+wss = symmetrise_sqw(ws_sub(idx),[0 1 0],[0 0 1],[0 0 0]);
+spaghetti_plot([compact(d2d(wss)) compact(wsim)])
+lz 0 2
+                            </code></pre>
+                        </figure>
+                    </div>
+                </div>
+            </content>
+        </div>
+    </section>
+
+</section>
