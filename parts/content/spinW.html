@@ -1,0 +1,178 @@
+<section>
+    <section class="subsection color--radiant" id="spinWhead">
+    <div class="grid-wrapper">
+        <div class="logo"></div>
+        <h1>General spin Hamiltonian - SpinW</h1>
+        <div class="description">
+            How does SpinW work?
+        </div>
+    </div>
+</section>
+
+<section class="blank" id="SpinWHamiltonian">
+    <div class="grid-wrapper">
+        <div class="header">
+            <div class="logo"></div>
+            <div class="section">General Hamiltonian</div>
+        </div>
+        <content>
+            <h2>General spin Hamiltonian:</h2>
+            $$
+            H = \sum_{mi,nj} \mathbf{S}_{mi}^T \cdot J_{mi} \cdot \mathbf{S}_{nj} + \sum_{mi}\mathbf{S}_{mi}^T \cdot A_i \cdot \mathbf{S}_{mi} + \mu_B\mathbf{H}^T\sum_{mi}g_i\mathbf{S}_{mi}
+            $$
+            <p><br>With the anisotropic and antisymmetric (Dzyaloshinskii-Moriya) exchange
+                interactions:<br></p>
+
+            $$J_S = \begin{bmatrix} J_x & 0 & 0 \\ 0 & J_y & 0 \\ 0 & 0 & J_z \end{bmatrix} ; J_A = \begin{bmatrix} 0 & D_z & -D_y \\ -D_z & 0 & D_x \\ D_y & -D_x & 0 \end{bmatrix}$$
+        </content>
+    </div>
+</section>
+
+
+<section class="blank" id="SpinWHamiltonian2">
+    <div class="grid-wrapper">
+        <div class="header">
+            <div class="logo"></div>
+            <div class="section">SpinW features</div>
+        </div>
+        <content>
+            <h2>Key Points:</h2>
+            <br>
+            <b>Non-Bravais lattice</b><br>
+            <ul>
+                <li>Additional rotation on every site within unit cell<br></li>
+            </ul>
+            <br>
+            <b>General interactions</b><br>
+            <ul>
+                <li>Multi-q magnetic ground states are possible</li>
+            </ul>
+
+            <h2><br>SpinW</h2>
+            <ul>
+                <li>Solves the general spin Hamiltonian</li>
+                <li>Calculates spin-spin correlation function</li>
+                <li>Numerical and symbolical</li>
+                <li>Can apply crystal symmetry operators on the Hamiltonian solves single-q magnetic structures</li>
+                <li>Solves multi-q magnetic structures on a magnetic supercell open source, runs on Matlab</li>
+                <li>More information: <a href="http://www.spinw.org" target="_blank">http://www.spinw.org</a></li>
+                <li>Download from: <a href="https://www.github.com/spinw/spinw" target="_blank">https://www.github.com/spinw/spinw</a></li>
+            </ul>
+        </content>
+    </div>
+</section>
+
+<section class="blank" id="prerequisites">
+    <div class="grid-wrapper">
+        <div class="header">
+            <div class="logo"></div>
+            <div class="section">Prerequisites</div>
+        </div>
+        <content>
+            <h2>Operating System</h2>
+            <ul><li>All modern OS's are supported</li></ul>
+            <h2>MATLAB</h2>
+            <ul>
+                <li>All versions after R2014b are fully supported.</li>
+                <li>OPTIONAL: Symbolic Toolbox</li>
+                <li>OPTIONAL: Parallel Computing Toolbox</li>
+                <br>
+            </ul>
+            <h2>Notes</h2>
+            <ul>
+                <li>More memory is needed if you have more magnetic atoms</li>
+                <li>More q-points takes longer</li>
+                <li>Python is technically supported but will not be covered here.</li>
+                <br>
+            </ul>
+            <p style="text-align: center"><i>Now lets install</i></p>
+        </content>
+    </div>
+</section>
+
+<section class="blank" id="install1">
+    <div class="grid-wrapper">
+        <div class="header">
+            <div class="logo"></div>
+            <div class="section">Installing latest releases</div>
+        </div>
+        <content>
+            <h2>Get the code:</h2>
+            <p>SpinW is available at:<br><a href="https://www.github.com/spinw/spinw/releases/latest" target="_blank">https://www.github.com/spinw/spinw/releases/latest</a></p>
+            <br><h2>Steps:</h2>
+            <ul>
+                <li>Unzip the archive into your preferred directory</li>
+                <li>Open MATLAB and run <code>install_spinw</code> from inside this directory</li>
+                <li>Verify with <code>s = spinw;</code></li>
+                <br>
+            </ul>
+            <h2>Updating:</h2>
+            <p>I am trying to make releases 2-3 times a year. It's always nice to be on the latest code!<br>There is a self update function <code>sw_update</code><br>This retrieves and installs the package from the link above.</p>
+            <h2>Developing:</h2>
+            <p>If you want to help develop a feature and contribute, please git clone <a href="https://www.github.com/spinw/spinw/" target="_blank">https://www.github.com/spinw/spinw.git</a> and create a pull request (to development branch)</p>
+        </content>
+    </div>
+</section>
+
+<section class="blank" id="install2">
+    <div class="grid-wrapper">
+        <div class="header">
+            <div class="logo"></div>
+            <div class="section">Installing via MATLAB</div>
+        </div>
+        <content>
+            <h2>Using the MATLAB package</h2>
+            <p>SpinW is now a MATALB add-on and can be downloaded directly from Mathworks.</p>
+            <img src="images/MatlabAddons.png" alt="Addon in the toolbar" style="max-height: inherit">
+            <p>Then search for SpinW and hit install.</p>
+            <p>Verify with <code>s = spinw;</code></p>
+            <h2>Updating:</h2>
+            <p>Add-Ons $\rightarrow$ Check for updates $\rightarrow$ Update</p>
+            <h2>NOTE</h2>
+            <p>This version may not correspond to the <code>sw_update</code> version!</p>
+        </content>
+    </div>
+</section>
+
+<section class="blank" id="gettingHelp">
+    <div class="grid-wrapper">
+        <div class="header">
+            <div class="logo"></div>
+            <div class="section">Getting help</div>
+        </div>
+        <content>
+
+            <h2>Function help</h2>
+            <p>For any function that starts with <code>sw_*</code> use:<br><code>help sw_*</code></p>
+
+            <h2>SpinW class methods</h2>
+            <p>for spinw class methods use: <br><code>help spinw.function_name</code>.<br>For help on plotting commands, use:<br><code>help swplot</code>.</p>
+            <h2>Online Documentation</h2>
+            <p>All help can be found on <a href="http://www.spinw.org" target="_blank">http://www.spinw.org</a> or <a href="https://spinw.github.io/spinwdoc" target="_blank">https://spinw.github.io/spinwdoc</a></p>
+        </content>
+    </div>
+</section>
+
+<section class="blank" id="spinWWorkflow">
+    <div class="grid-wrapper">
+        <div class="header">
+            <div class="logo"></div>
+            <div class="section">SpinW Workflow</div>
+        </div>
+        <content>
+            <div class="container" style="  display: grid;
+                                            grid-template-rows: 80% 5% auto;
+                                            height: 100%;">
+                <div style="grid-row-start:1; grid-row-end:2;">
+                    <img src="images/spinw_link.png" style="display: block;
+  margin-left: auto;
+  margin-right: auto; height: 100%">
+                </div>
+                <div style="grid-row-start:3; grid-row-end:4;">
+                    <p>Data transfer diagram in SpinW</p>
+                </div>
+            </div>
+        </content>
+    </div>
+</section>
+</section>

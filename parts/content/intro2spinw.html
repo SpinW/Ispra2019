@@ -1,0 +1,115 @@
+<section>
+    <section class="subsection color--radiant" id="tutorial_head">
+        <div class="grid-wrapper">
+            <div class="logo"></div>
+            <h1>Installing SpinW</h1>
+            <div class="description">
+                How to get and install SpinW
+            </div>
+        </div>
+    </section>
+
+    <section class="blank" id="prerequisites">
+        <div class="grid-wrapper">
+            <div class="header">
+                <div class="logo"></div>
+                <div class="section">Prerequisites</div>
+            </div>
+            <content>
+                <h2>Operating System</h2>
+                <ul><li>All modern OS's are supported</li><br></ul>
+                <h2>MATLAB</h2>
+                <ul>
+                    <li>All versions after R2014b are fully supported.</li>
+                    <li>OPTIONAL: Symbolic Toolbox</li>
+                    <li>OPTIONAL: Parallel Computing Toolbox</li>
+                    <br>
+                </ul>
+                <h2>Notes</h2>
+                <ul>
+                    <li>More memory is needed if you have more magnetic atoms</li>
+                    <li>More q-points takes longer</li>
+                    <li>Python is technically supported but will not be covered here.</li>
+                    <br>
+                </ul>
+                <p style="text-align: center"><i>Now lets install</i></p>
+            </content>
+        </div>
+    </section>
+
+    <section class="blank" id="install1">
+        <div class="grid-wrapper">
+            <div class="header">
+                <div class="logo"></div>
+                <div class="section">Installing latest releases</div>
+            </div>
+            <content>
+                <h2>Get the code:</h2>
+                <p>SpinW is available at:<br><a href="https://www.github.com/spinw/spinw/releases/latest" target="_blank">https://www.github.com/spinw/spinw/releases/latest</a></p>
+                <br><h2>Steps:</h2>
+                <ul>
+                    <li>Unzip the archive into your preferred directory</li>
+                    <li>Open MATLAB and run <code>install_spinw</code> from inside this directory</li>
+                    <li>Verify with <code>s = spinw;</code></li>
+                    <br>
+                </ul>
+                <h2>Updating:</h2>
+                <p>I am trying to make releases 2-3 times a year. It's always nice to be on the latest code!<br>There is a self update function <code>sw_update</code><br>This retrieves and installs the package from the link above.</p>
+                <h2>Developing:</h2>
+                <p>If you want to help develop a feature and contribute, please git clone <a href="https://www.github.com/spinw/spinw/" target="_blank">https://www.github.com/spinw/spinw.git</a> and create a pull request (to development branch)</p>
+            </content>
+        </div>
+    </section>
+
+    <section class="blank" id="install2">
+        <div class="grid-wrapper">
+            <div class="header">
+                <div class="logo"></div>
+                <div class="section">Installing via MATLAB</div>
+            </div>
+            <content>
+                <h2>Using the MATLAB package</h2>
+                <p>SpinW is now a MATALB add-on and can be downloaded directly from Mathworks.</p>
+                <img src="images/MatlabAddons.png" alt="Addon in the toolbar" style="max-height: inherit">
+                <p>Then search for SpinW and hit install.</p>
+                <p>Verify with <code>s = spinw;</code></p>
+                <h2>Updating:</h2>
+                <p>Add-Ons $\rightarrow$ Check for updates $\rightarrow$ Update</p>
+                <h2>NOTE:</h2>
+                <p>This version may not correspond to the <code>sw_update</code> version as it's technically unreleased!</p>
+                <p>You can use this with MATLAB online: <a href="https://matlab.mathworks.com" target="_blank">https://matlab.mathworks.com</a></p>
+            </content>
+        </div>
+    </section>
+
+    <section class="blank" id="gettingHelp">
+        <div class="grid-wrapper">
+            <div class="header">
+                <div class="logo"></div>
+                <div class="section">Getting help</div>
+            </div>
+            <content>
+                <h2>Function help</h2>
+                <p>For any function that starts with <code>sw_*</code> use:<br><code>help sw_*</code></p>
+
+                <h2>SpinW class methods</h2>
+                <p>for spinw class methods use: <br><code>help spinw.function_name</code>.<br>For help on plotting commands, use:<br><code>help swplot</code>.</p>
+                <h2>Online Documentation</h2>
+                <p>All help can be found on <a href="http://www.spinw.org" target="_blank">http://www.spinw.org</a> or <a href="https://spinw.github.io/spinwdoc" target="_blank">https://spinw.github.io/spinwdoc</a></p>
+            </content>
+        </div>
+    </section>
+</section>
+
+<section class="quote color--midnight" id="learnByDoing">
+    <div class="grid-wrapper">
+        <div class="logo"></div>
+        <blockquote>
+            <p>
+                For the things we have to learn before we can do them, we learn by doing them.
+            </p>
+            <hr>
+            <cite>Aristotle</cite>
+        </blockquote>
+    </div>
+</section>

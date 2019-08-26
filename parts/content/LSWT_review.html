@@ -1,0 +1,223 @@
+<section class="subsection color--radiant" id="LSWTReview">
+    <div class="grid-wrapper">
+        <div class="logo"></div>
+        <h1>Linear Spin Wave Theory Review</h1>
+        <div class="description">
+            5 minute recap on LSWT
+        </div>
+    </div>
+</section>
+
+<section class="blank" id="QM_ham">
+    <div class="grid-wrapper">
+        <div class="header">
+            <div class="logo"></div>
+            <div class="section">Spin Chain Hamiltonian</div>
+        </div>
+        <content>
+            <h2>Heisenberg Hamiltonian of a chain on Bravais lattice:</h2>
+            $$ \mathcal{H} = \sum_{i,d} J(d) \mathbf{S}_i \cdot \mathbf{S}_{i+d}$$
+            <p>After substitution, changing to a rotating co-ordinate system  and a bit of trigonometry we get:</p>
+            $$ \begin{align}
+            \mathcal{H} = & \sum_{i,j} J(\mathbf{d}) \left( S_i^\eta S_j^\eta + \sin (\mathbf{Q} \cdot \mathbf{d}_{i,j})(S_i^\mu S_j^\xi - S_i^\xi S_j^\eta \right) + \\
+            & \cos(\mathbf{Q}\cdot \mathbf{d}_{i,j}\left( S_i^\mu S_j^\mu + S_i^\xi S_j^\xi\right)
+            \end{align}$$
+        </content>
+    </div>
+</section>
+
+<section class="blank" id="ladderOperators">
+    <div class="grid-wrapper">
+        <div class="header">
+            <div class="logo"></div>
+            <div class="section">Applying ladder operators</div>
+        </div>
+        <content>
+            <p>Spin state with a small field along the $z$ axis:</p>
+            $$
+            \lvert n \rangle \equiv S, m = S -n
+            $$
+            <p>Ladder operators for a harmonic oscillator:</p>
+            $$ \begin{align}
+            a^+ \lvert n \rangle  & = \sqrt{n+1} \lvert n + 1 \rangle \\
+            a \lvert n \rangle    & = \sqrt{n} \lvert n -1 \rangle \\
+            \left[ a, a^+ \right] & = 1
+            \end{align}$$
+            <p>Ladder operators for spin:</p>
+            $$ \begin{align}
+            S^- \lvert n \rangle  & = \sqrt{2S}\sqrt{1 - \frac{n}{2S}}\sqrt{n+1} \lvert n + 1 \rangle \\
+            S^+ \lvert n \rangle  & = \sqrt{2S}\sqrt{1 - \frac{n - 1}{2S}}\sqrt{n} \lvert n -1 \rangle \\
+            \end{align}$$
+        </content>
+    </div>
+</section>
+
+<section class="quote color--midnight" id="SWApprox">
+    <div class="grid-wrapper">
+        <div class="logo"></div>
+        <blockquote>
+            <p>
+                Assuming $\langle n \rangle \ll S$ the coupled harmonic oscillator is a good model. The excited states of the harmonic oscillator are magnons.
+            </p>
+            <hr>
+            <cite>Spin wave approximation</cite>
+        </blockquote>
+    </div>
+</section>
+
+<section class="blank" id="HPTransform">
+    <div class="grid-wrapper">
+        <div class="header">
+            <div class="logo"></div>
+            <div class="section">Remembering ladder operators</div>
+        </div>
+        <content>
+            <h3>Holstein–Primakoff transformation</h3>
+            <p>Ladder operators for spin:</p>
+            $$ \begin{align}
+            S^-   & = \sqrt{2S} a^+ \hat{f}  \\
+            S^+   & = \sqrt{2S} \hat{f} a
+            \end{align}$$
+            <p>Where:</p>
+            $$ \hat{f} = \sqrt{1 - \frac{n}{2S}} $$
+            <p>Applying the transformation, $S$ in boson creation and annihilation operators:</p>
+            $$ \begin{align}
+            S_i^\eta  & = \frac{1}{2}(S^+ + S^- ) = \sqrt{S/2}\hat{f}(a^+_i + a_i)  \\
+            S_i^\mu   & = -\frac{i}{2}(S^+ - S^- ) = \sqrt{S/2}\hat{f}(a^+_i - a_i) \\
+            S_i^\xi   & = S - n_i = S - a_i^+a_i
+            \end{align}$$
+        </content>
+    </div>
+</section>
+
+<section class="blank" id="QuadraticForm1">
+    <div class="grid-wrapper">
+        <div class="header">
+            <div class="logo"></div>
+            <div class="section">Quadratic form</div>
+        </div>
+        <content>
+            <p>So:</p>
+            $$ S_i^\eta S_j^\eta = S/2 \hat{f}_i \hat{f}_j (a^+_i + a_i)(a^+_j + a_j) $$
+            <p>etc...</p>
+            <p>We have a hamiltonian of boson operators which can be expanded in powers of $1/S$ to obtain:</p>
+            $$
+            \mathcal{H} = E_0 + \mathcal{H}_1 + \mathcal{H}_2 + \mathcal{H}_3 + \mathcal{H}_4 ...
+            $$
+            <p>Where $E_0$ is the classical result which is derived in many textbooks:</p>
+            $$
+            E_0 = S^2 \sum_{i, \mathbf{d}} J(\mathbf{d})\cos (\mathbf{Q} \cdot \mathbf{d})
+            $$
+        </content>
+    </div>
+</section>
+
+<section class="blank" id="QuadraticForm2">
+    <div class="grid-wrapper">
+        <div class="header">
+            <div class="logo"></div>
+            <div class="section">Quadratic form</div>
+        </div>
+        <content>
+            <p>1 operator term:</p>
+            $$ \mathcal{H}_1 = S^{3/2} \sum_{i,j} \frac{i}{2} J(\mathbf{d}_{i,j}) \sin (\mathbf{Q} \cdot \mathbf{d}_{i,j})(a_i^+ - a_i + a_j - a_j^+) $$
+            <aside class="notes">
+                Actually 1st operator term vanishes if the spin state minimises E0
+            </aside>
+            <p>2 operator term:</p>
+            $$\begin{align}
+            \mathcal{H}_2  = S \sum_{i,j} \frac{1}{2} J(\mathbf{d}_{i,j}) &( (1 - \cos (\mathbf{Q} \cdot \mathbf{d}_{i,j}))(a_ia_j + a_ia_j) \\
+            & + (1 + \cos (\mathbf{Q} \cdot \mathbf{d}_{i,j}))(a_ia_j^+ + a_i^+a_j) \\
+            & - 2\cos (\mathbf{Q} \cdot \mathbf{d}_{i,j})(a_i^+a_i + a_j^+a_j) )
+            \end{align}$$
+            <aside class="notes">
+                Actually 1st operator term vanishes if the spin state minimises E0.
+                The spin dynamics is contained in the 2 operator term
+            </aside>
+            <p>3 operator term:</p>
+            <ul>
+                <li>Non-zero in non-collinear structures</li>
+                <li>Can change the ground state</li>
+            </ul>
+            <p>4 operator term:</p>
+            <ul>
+                <li>Renormalizes the magnon dispersion</li>
+                <li>Gives finite magnon lifetime</li>
+            </ul>
+        </content>
+    </div>
+</section>
+
+<section class="blank" id="Diagonalization2">
+    <div class="grid-wrapper">
+        <div class="header">
+            <div class="logo"></div>
+            <div class="section">Diagonalization of the quadratic form</div>
+        </div>
+        <content>
+            <p>Luckily, $\mathcal{H}_2$ can be written in matrix form:</p>
+            $$\mathcal{H}_2 = \sum_\mathbf{k} \mathbf{x}^\dagger H(\mathbf{k}) \mathbf{x} $$
+            <p>Where $\mathbf{x}$ is a vector of Boson operators:</p>
+            $$ \mathbf{x} = \begin{bmatrix} a_\mathbf{k} \\ a_{-\mathbf{k}}^+\end{bmatrix}$$
+            <p>And the matrix of the Hamiltonian has the form:</p>
+            $$ H = \begin{bmatrix} A & B \\ B & A \end{bmatrix} $$
+            <br>
+            $$\begin{align}
+            A & = J(\mathbf{k}) + J(\mathbf{k} + \mathbf{Q})/2 + J(\mathbf{k} - \mathbf{Q})/2 - 2J(\mathbf{Q}) \\
+            B & = J(\mathbf{k}) - J(\mathbf{k} + \mathbf{Q})/2 - J(\mathbf{k} - \mathbf{Q})/2
+            \end{align}$$
+        </content>
+    </div>
+</section>
+
+<section class="blank" id="Diagonalization3">
+    <div class="grid-wrapper">
+        <div class="header">
+            <div class="logo"></div>
+            <div class="section">Diagonalization of the quadratic form</div>
+        </div>
+        <content>
+            <p>In Bogoliubov method, we define new operator $b$ with the following transformation:
+            </p>
+            $$ \begin{align}
+            b   & = ua + va^+ \\
+            b^+ & = ua^+ +va
+            \end{align}$$
+            <p>The new operator has to fulfill the commutation relations:</p>
+            $$ \begin{align}
+            [b, b^+] & = 1 \\
+            u^2 + v^2 & = 1
+            \end{align}$$
+            <p>With the right parameter choice:</p>
+            $$
+            \mathcal{H}_2 = \sum_\mathbf{k} \omega_\mathbf{k} \left( b^+b + \frac{1}{2} \right)
+            $$
+            <p>And the spin wave dispersion:</p>
+            $$
+            \omega_\mathbf{k} = \sqrt{A^2 - B^2}
+            $$
+            <p>The above calculation is equivalent to solving the eigenvalue problem of $gH$, where $g = [x, x^\dagger]$ commutator matrix.</p>
+        </content>
+    </div>
+</section>
+
+<section class="blank" id="NSF1">
+    <div class="grid-wrapper">
+        <div class="header">
+            <div class="logo"></div>
+            <div class="section">Spin-spin correlation function</div>
+        </div>
+        <content>
+            <p>Now we have $\omega_\mathbf{k}$ and half the story. Remember for neutron scattering: </p>
+            <br>$$
+            \frac{d^2\sigma}{d\Omega dE} = C \cdot F^2(\mathbf{K}) \sum_{\alpha , \beta}(\delta_{\alpha , \beta} - \hat{k}_\alpha\hat{k}_\beta ) (gSg^T)^{\alpha , \beta} (\mathbf{k}, \omega)
+            $$
+            <p>With the correlation function:</p>
+            <br>$$
+            S^{\alpha \beta}(\mathbf{k},\omega) = \frac{1}{2\pi\hbar}\int dt e^{-i \omega t} \left< S^\alpha (\mathbf{k}, 0) S^\beta (-\mathbf{k}, t) \right>
+            $$
+        </content>
+    </div>
+</section>
+
+

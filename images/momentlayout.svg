@@ -1,0 +1,46 @@
+<svg version="1.1"
+     baseProfile="full"
+     viewBox="0 0 100 100" width="100%" height="auto"
+     xmlns="http://www.w3.org/2000/svg">
+
+    <!-- arrowhead marker definition -->
+    <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5"
+            markerWidth="2.5" markerHeight="5"
+            orient="auto-start-reverse">
+        <path d="M 0 0 L 10 5 L 0 10 z" />
+    </marker>
+    <style>
+        .smallLab {font: normal 8px sans-serif;}
+    </style>
+
+    <!--Draw the Matrix-->
+    <line x1="30" y1="10" x2="90" y2="10" stroke-linecap="round" stroke="black" stroke-width="2"/>
+    <line x1="30" y1="30" x2="90" y2="30" stroke-linecap="round" stroke="black" stroke-width="2"/>
+    <line x1="30" y1="50" x2="90" y2="50" stroke-linecap="round" stroke="black" stroke-width="2"/>
+    <line x1="30" y1="70" x2="90" y2="70" stroke-linecap="round" stroke="black" stroke-width="2"/>
+
+    <line x1="30" y1="10" x2="30" y2="70" stroke-linecap="round" stroke="black" stroke-width="2"/>
+    <line x1="50" y1="10" x2="50" y2="70" stroke-linecap="round" stroke="black" stroke-width="2"/>
+    <line x1="70" y1="10" x2="70" y2="70" stroke-linecap="round" stroke="black" stroke-width="2"/>
+    <line x1="90" y1="10" x2="90" y2="70" stroke-linecap="round" stroke="black" stroke-width="2"/>
+
+    <text x="40" y="60" class="smallLab" dominant-baseline="middle" text-anchor="middle">1</text>
+    <text x="60" y="60" class="smallLab" dominant-baseline="middle" text-anchor="middle">2</text>
+    <text x="80" y="60" class="smallLab" dominant-baseline="middle" text-anchor="middle">3</text>
+
+    <text x="40" y="40" class="smallLab" dominant-baseline="middle" text-anchor="middle">4</text>
+    <text x="60" y="40" class="smallLab" dominant-baseline="middle" text-anchor="middle">5</text>
+    <text x="80" y="40" class="smallLab" dominant-baseline="middle" text-anchor="middle">6</text>
+
+    <text x="40" y="20" class="smallLab" dominant-baseline="middle" text-anchor="middle">7</text>
+    <text x="60" y="20" class="smallLab" dominant-baseline="middle" text-anchor="middle">8</text>
+    <text x="80" y="20" class="smallLab" dominant-baseline="middle" text-anchor="middle">9</text>
+
+    <!--Add labels-->
+    <text x="10" y="45" class="smallLab" text-anchor="middle" dominant-baseline="middle">b</text>
+    <text x="55" y="90" class="smallLab" text-anchor="middle" dominant-baseline="middle">a</text>
+
+    <!--Draw the axes-->
+    <polyline points="10,50 10,90 50,90" fill="none" stroke="black"
+              marker-start="url(#arrow)" marker-end="url(#arrow)"  stroke-width="2"/>
+</svg>

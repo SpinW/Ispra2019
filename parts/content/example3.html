@@ -1,0 +1,125 @@
+<section>
+    <section class="subsection color--radiant" id="fe_fit_head">
+        <div class="grid-wrapper">
+            <div class="logo"></div>
+            <h1> Example of Horace-SpinW fitting </h1>
+            <div class="description">
+                Fitting spin waves in bcc-Iron with SpinW and Horace
+                <br>
+                Download the scripts here: <a href="matlab/fe_fit.m" style="color: white"><code>fe_fit.m</code></a>
+            </div>
+        </div>
+    </section>
+
+    <section class="blank color--dark" id="fe_fit1">
+        <div class="grid-wrapper">
+            <div class="header">
+                <div class="logo"></div>
+                <div class="section"> Make cuts of Fe data </div>
+            </div>
+            <content>
+                <p> Make the set of standard $Q_h$ 1D cuts at different energies as before </p>
+                <figure class="code">
+                    <pre><code class="matlab">
+proj = projaxes([1 1 0], [-1 1 0]);
+energy_range = [80:20:160];
+for i = 1:numel(energy_range)
+    my_cuts(i) = cut_sqw(sqw_file, proj, [-3,0.05,3], [-1.05,-0.95], [-0.05,0.05], ...
+        [-10 10]+energy_range(i));
+end
+                    </code></pre>
+                </figure>
+                <p> Run the same fits with the analytical $S(\mathbf{q},\omega)$ function as before
+                    and note the fitted parameters and how long it takes </p>
+            </content>
+        </div>
+    </section>
+
+    <section class="blank color--dark" id="fe_fit2">
+        <div class="grid-wrapper">
+            <div class="header">
+                <div class="logo"></div>
+                <div class="section"> SpinW model </div>
+            </div>
+            <content>
+                <p> Define a SpinW model for bcc-Fe with a single nearest neighbour exchange and
+                    a small easy axis anisotropy </p>
+                <figure class="code">
+                    <pre><code class="matlab">
+a = 2.87;
+
+fe = spinw;
+fe.genlattice('lat_const', [a a a], 'angled', [90 90 90], 'spgr', 'I m -3 m')  % bcc Fe
+fe.addatom('label', 'MFe3', 'r', [0 0 0], 'S', 5/2, 'color', 'gold')
+fe.gencoupling()
+fe.addmatrix('label', 'J1', 'value', 1, 'color', 'gray')
+fe.addmatrix('label', 'D', 'value', diag([0 0 -1]), 'color', 'green')
+fe.addcoupling('mat', 'J1', 'bond', 1)
+fe.addaniso('D')
+fe.genmagstr('mode', 'direct', 'S', [0 0 1; 0 0 1]');  % Ferromagnetic
+
+plot(fe, 'range', [2 2 2])
+                    </code></pre>
+                </figure>
+            </content>
+        </div>
+    </section>
+
+    <section class="blank color--dark" id="fe_fit3">
+        <div class="grid-wrapper">
+            <div class="header">
+                <div class="logo"></div>
+                <div class="section"> SpinW model </div>
+            </div>
+            <content>
+                <p> Set the parameters for the fits, and also SpinW options </p>
+                <p> Note that the analytical expression used previous for $S(\mathbf{q},\omega)$
+                    used $JS$, whereas SpinW uses $J$, and we have defined $S=\frac{5}{2}$ </p>
+                <figure class="code">
+                    <pre><code class="matlab">
+% Initial parameters:
+J = -16;
+D = -0.1;
+gam = 66;
+temp = 10;
+amp = 131;
+
+cpars = {'mat', {'J1', 'D(3,3)'}, 'hermit', false, 'optmem', 1, ...
+    'useFast', true, 'resfun', 'sho', 'formfact', true};
+swpref.setpref('usemex',true);
+                    </code></pre>
+                </figure>
+                <p> Notice that we use the <code> sho </code> resolution function, in common with
+                    the analytical expressions </p>
+                <p> Because the cuts are small, we also force SpinW to calculate all q-points in
+                    one chunk with the <code> {'optmem', 1} </code> option.
+            </content>
+        </div>
+    </section>
+
+    <section class="blank color--dark" id="fe_fit4">
+        <div class="grid-wrapper">
+            <div class="header">
+                <div class="logo"></div>
+                <div class="section"> SpinW model </div>
+            </div>
+            <content>
+                <p> Set up the multifit object on the array of 1D cuts </p>
+                <p> Use the <code> horace_sqw </code> method as the fit function and parameters
+                    as defined previously, and run the fit </p>
+                <figure class="code">
+                    <pre><code class="matlab">
+kk = multifit_sqw (my_cuts);
+kk = kk.set_fun (@fe.horace_sqw, {[J D gam temp amp] cpars{:}});
+kk = kk.set_free ([1, 0, 1, 0, 1]);
+kk = kk.set_bfun (@linear_bg, [0.1,0]);
+kk = kk.set_bfree ([1,0]);
+kk = kk.set_options ('list',2);
+
+[wfit, fitdata] = kk.fit('comp');
+                    </code></pre>
+                </figure>
+                <p> Compare the fits - are the parameters or correlation matrix consistent? </p>
+            </content>
+        </div>
+    </section>

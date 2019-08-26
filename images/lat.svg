@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg id="drawing" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"      viewBox="0 0 100 100" width="100%" height="auto"
+>
+    <!--<script type="text/javascript" xlink:href="/node_modules/svg.js/dist/svg.min.js"></script>-->
+    <script type="text/javascript" xlink:href="//cdnjs.cloudflare.com/ajax/libs/svg.js/2.7.1/svg.min.js"></script>
+    <script type="text/javascript">
+        <![CDATA[
+
+        var sx = 10;
+        var sy = 10;
+
+        var r = 6;
+        var nx = 5;
+        var ny = 5;
+
+        var sep = 20;
+        var arrowscale = r*2;
+
+        var draw = SVG('drawing')
+
+        function atom(x, y){
+           draw.circle(r).fill('#FF9F33').attr({ cx: x, cy: y }).stroke({ color: '#000000', opacity: 0.6, width: 1})
+        }
+
+        function arrowhead(add){
+            add.path('M 0 0 L 2 1 L 0 2 z').fill('red')
+        }
+        function arrowhead2(add){
+            add.path('M 0 0 L 2 1 L 0 2 z').fill('red').transform({ rotation: 180 })
+        }
+
+        for (let j = 0; j < ny; j++){
+            draw.line(sx, sy+(j*sep), sx+(nx-1)*sep, sy+(j*sep)).stroke({ color: '#51A0D5', width: 1 })
+            for (let i = 0; i < nx; i++){
+                if (j == 0) {
+                    draw.line(sx+(i*sep), sy, sx+(i*sep), sy+(ny-1)*sep).stroke({ color: '#51A0D5', width: 1 })
+                };
+                atom(sx+(i*sep), sy+(j*sep));
+                var l = draw.line(sx+(i*sep)-arrowscale/2, sy+(j*sep),sx+(i*sep)+arrowscale/2, sy+(j*sep)).stroke({ color: 'red', width: 1.5 })
+                l.rotate(-45)
+                if ((i + j) % 2) {
+                    l.marker('start', 2, 2, arrowhead2)
+                } else {
+                    l.marker('end', 2, 2, arrowhead)
+                }
+            };
+        };
+    ]]>
+    </script>
+</svg>

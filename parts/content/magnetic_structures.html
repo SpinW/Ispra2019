@@ -1,0 +1,1053 @@
+<section>
+<style>
+        .tab {
+            text-indent: 40px;
+        }
+
+        .center {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 50%;
+        }
+
+        .column {
+            float: left;
+            width: 50%;
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        .defaulttable {
+            display: table;
+        }
+        .defaulttable thead {
+            display: table-header-group;
+        }
+        .defaulttable tbody {
+            display: table-row-group;
+        }
+        .defaulttable tfoot {
+            display: table-footer-group;
+        }
+        .defaulttable tbody>tr:hover,
+        .defaulttable tbody>tr {
+            display: table-row;
+        }
+        .defaulttable tbody>tr:hover>td,
+        .defaulttable tbody>tr>td {
+            display: table-cell;
+        }
+        .defaulttable,
+        .defaulttable tbody,
+        .defaulttable tbody>tr:hover,
+        .defaulttable tbody>tr,
+        .defaulttable tbody>tr:hover>td,
+        .defaulttable tbody>tr>td,
+        .defaulttable tbody>tr:hover>th,
+        .defaulttable tbody>tr>th,
+        .defaulttable thead>tr:hover>td,
+        .defaulttable thead>tr>td,
+        .defaulttable thead>tr:hover>th,
+        .defaulttable thead>tr>th,
+        .defaulttable tfoot>tr:hover>td,
+        .defaulttable tfoot>tr>td,
+        .defaulttable tfoot>tr:hover>th,
+        .defaulttable tfoot>tr>th {
+            background: transparent;
+            background-color: #FFF;
+            border: 0px solid #000;
+            border-spacing: 0px;
+            border-collapse: separate;
+            empty-cells: show;
+            padding: 0px;
+            margin: 0px;
+            outline: 0px;
+            font-size: 100%;
+            color: #000;
+            vertical-align: top;
+            text-align: left;
+            font-family: sans-serif;
+            table-layout: auto;
+            caption-side: top;
+            -webkit-border-radius: 0px;
+            -moz-border-radius: 0px;
+            border-radius: 0px;
+            -webkit-background-clip: padding-box;
+            -moz-background-clip: padding;
+            background-clip: padding-box;
+        }
+
+        .limiter {
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .wrap-table100 {
+            width: 100%;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        table {
+            border-spacing: 1;
+            border-collapse: collapse;
+            background: #F8F8F8;
+            border-radius: 10px;
+            overflow: hidden;
+            width: 100%;
+            margin: 0 auto;
+            position: relative;
+        }
+        table * {
+            position: relative;
+        }
+        table td, table th {
+            padding-left: 8px;
+        }
+        table thead tr {
+            height: 60px;
+            background: #36304a;
+        }
+        table tbody tr {
+            height: 50px;
+        }
+        table tbody tr:last-child {
+            border: 0;
+            border-right: none;
+        }
+        table tbody td:last-child {
+            border-right: none;
+        }
+        table td, table th {
+            text-align: left;
+        }
+        table td.l, table th.l {
+            text-align: right;
+        }
+        table td.c, table th.c {
+            text-align: center;
+        }
+        table td.r, table th.r {
+            text-align: center;
+        }
+
+
+        .table100-head th{
+            color: #fff;
+            line-height: 1.2;
+            font-weight: unset;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #E8E8E8;
+        }
+
+        tbody tr {
+            color: #606060;
+            line-height: 1.2;
+            font-weight: unset;
+        }
+
+        tbody tr:hover {
+            color: #555555;
+            background-color: #f5f5f5;
+            cursor: pointer;
+
+        }
+
+        .lastcolumn {
+            text-align: right;
+        }
+        @media screen and (max-width: 640px) {
+            table {
+                overflow-x: auto;
+                display: block;
+            }
+        }
+
+        @media screen and (max-width: 992px) {
+            table {
+                display: block;
+            }
+            table > *, table tr, table td, table th {
+                display: block;
+            }
+            table thead {
+                display: none;
+            }
+            table tbody tr {
+                height: auto;
+                padding: 37px 0;
+            }
+            table tbody tr td {
+                padding-left: 40% !important;
+                margin-bottom: 24px;
+            }
+            table tbody tr td:last-child {
+                margin-bottom: 0;
+            }
+            table tbody tr td:before {
+                font-family: OpenSans-Regular;
+                font-size: 14px;
+                color: #999999;
+                line-height: 1.2;
+                font-weight: unset;
+                position: absolute;
+                width: 40%;
+                left: 30px;
+                top: 0;
+            }
+
+            tbody tr {
+                font-size: 14px;
+            }
+        }
+    </style>
+
+    <section class="subsection color--radiant" id="introhead">
+        <div class="grid-wrapper">
+            <div class="logo"></div>
+            <h1>Magnetic Structures in SpinW</h1>
+            <div class="description">
+                Defining and refining a magnetic structure in SpinW
+            </div>
+        </div>
+    </section>
+
+    <section class="showit" id="intro1">
+        <div class="grid-wrapper">
+            <div class="header">
+                <div class="logo"></div>
+                <div class="section">Introduction</div>
+            </div>
+            <content>
+                <div class="profile">
+                    <div class="basics">
+                        <!--
+                        <object data="images/lat.svg" type="image/svg+xml" style="width: 100%">
+                            <img src="yourfallback.jpg" />
+                        </object>
+                        -->
+                        <div class="wrap-table100">
+                            <div class="table100">
+                                <table>
+                                    <thead>
+                                    <tr class="table100-head">
+                                        <th colspan="8" style="text-align: center; font-size:smaller">$$\hat{S}^{\pm}|m\rangle = \sqrt{(S\mp m)(S+1\pm m)}\ \ |m\pm1\rangle$$</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <th colspan="8" style="text-align: center; font-size:smaller">$$m = S, S-1, S-2, ..., -S$$</th>
+                                    <tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <h3 style="text-align: center; font-size: 48px"> &dArr; </h3>
+                        <div class="wrap-table100">
+                            <div class="table100">
+                                <table>
+                                    <thead>
+                                    <tr class="table100-head">
+                                        <th colspan="8" style="text-align: center; font-size:smaller">$$a|n\rangle = \sqrt{n}\ |n-1\rangle$$</th>
+                                    </tr>
+                                    <tr class="table100-head">
+                                        <th colspan="8" style="text-align: center; font-size:smaller">$$a^{\dagger}|n\rangle = \sqrt{n+1}\ |n+1\rangle$$</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <th colspan="16" style="text-align: center; font-size:smaller">$$n=0, 1, 2, ..., \infty$$</th>
+                                    <tr>
+                                    </tr>
+                                    <th colspan="16" style="text-align: center; font-size:smaller">$n=0$ corresponds to $m=S$</th>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="name">Holstein-Primakoff Transformation</div>
+                        <div class="role">In linear spin wave theory, the vacuum state $n=0$ corresponds to the fully ordered state $m=S$</div>
+                    </div>
+                    <div id="details">
+                        <h3>Introduction</h3>
+                        <p> Linear spin wave theory is about small deviations of the spins away from their (ordered) ground state </p>
+                        <p> Therefore, before calculating the spin precessions, we need to define the ordered state </p>
+                        <p> There are two main ways to define the magnetic structure in SpinW: </p>
+                        <div style="margin-left:40px">
+                            <ul>
+                                <li> Directly, by specifying the spin directions in the (super)lattice </li>
+                                <li> For single-$k$ structures, the propagation vector and initial spin direction can be given instead </li>
+                                <li> Single-$k$ structures can also be defined by an initial direction and an angular offset </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </content>
+        </div>
+    </section>
+
+    <section class="showit" id="intro2">
+        <div class="grid-wrapper">
+            <div class="header">
+                <div class="logo"></div>
+                <div class="section">Introduction</div>
+            </div>
+            <content>
+                <div class="profile">
+                    <div class="basics">
+                        <!--
+                        <object data="images/lat.svg" type="image/svg+xml" style="width: 100%">
+                            <img src="yourfallback.jpg" />
+                        </object>
+                        -->
+                        <div class="wrap-table100">
+                            <div class="table100">
+                                <table>
+                                    <thead>
+                                    <tr class="table100-head">
+                                        <th colspan="8" style="text-align: center; font-size:smaller">$$\hat{S}^{\pm}|m\rangle = \sqrt{(S\mp m)(S+1\pm m)}\ \ |m\pm1\rangle$$</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <th colspan="8" style="text-align: center; font-size:smaller">$$m = S, S-1, S-2, ..., -S$$</th>
+                                    <tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <h3 style="text-align: center; font-size: 48px"> &dArr; </h3>
+                        <div class="wrap-table100">
+                            <div class="table100">
+                                <table>
+                                    <thead>
+                                    <tr class="table100-head">
+                                        <th colspan="8" style="text-align: center; font-size:smaller">$$a|n\rangle = \sqrt{n}\ |n-1\rangle$$</th>
+                                    </tr>
+                                    <tr class="table100-head">
+                                        <th colspan="8" style="text-align: center; font-size:smaller">$$a^{\dagger}|n\rangle = \sqrt{n+1}\ |n+1\rangle$$</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <th colspan="16" style="text-align: center; font-size:smaller">$$n=0, 1, 2, ..., \infty$$</th>
+                                    <tr>
+                                    </tr>
+                                    <th colspan="16" style="text-align: center; font-size:smaller">$n=0$ corresponds to $m=S$</th>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="name">Holstein-Primakoff Transformation</div>
+                        <div class="role">In linear spin wave theory, the vacuum state $n=0$ corresponds to the fully ordered state $m=S$</div>
+                    </div>
+                    <div id="details">
+                        <p> Because of the Hamiltonian in SpinW is formulated in a rotating coordinate system, defining a single-$k$ magnetic
+                            structure using a propagation vector is computationally more efficient than defining a supercell </p>
+                        <p> This method will also allow the definition of a true incommensurate structure </p>
+                        <p> This is in contrast to similar programs such as SpinWaveGenie and McPhase which only allow the supercell definition </p>
+                        <p> However, multi-$k$ and more complex structures cannot be defined in this way and will need a supercell </p>
+                    </div>
+                </div>
+            </content>
+        </div>
+    </section>
+
+    <section class="subsection color--radiant" id="magstr_theory_head">
+        <div class="grid-wrapper">
+            <div class="logo"></div>
+            <h1>Magnetic Structure Theory</h1>
+            <div class="description">
+                Refresher on basis and propagation vectors
+            </div>
+        </div>
+    </section>
+
+    <section class="showit" id="magstr_theory1">
+        <div class="grid-wrapper">
+            <div class="header">
+                <div class="logo"></div>
+                <div class="section">Magnetic Structure Theory</div>
+            </div>
+            <content>
+                <div class="profile">
+                    <div class="basics">
+                        <img src="images/propvect.svg" alt="propagation_vector">
+                    </div>
+                    <div class="details">
+                        <h3>Magnetic Structure Theory Refresher</h3>
+                        <p>The $j^{\mathrm{th}}$ magnetic moment in unit cell $l$ which is separated from the first unit cell $0$ by the
+                            vector $t$ can be expressed as a Fourier series,</p><br>
+                        $$ \mathbf{m}_j = \sum_{n} \mathbf{\Psi}_j^{\mathbf{k}_n} \exp^{-2\pi i\mathbf{k}_n\cdot\mathbf{t}} $$
+                    </div>
+                </div>
+            </content>
+        </div>
+    </section>
+
+    <section class="showit" id="magstr_theory2">
+        <div class="grid-wrapper">
+            <div class="header">
+                <div class="logo"></div>
+                <div class="section">Magnetic Structure Theory</div>
+            </div>
+            <content>
+                <div class="profile">
+                    <div class="basics">
+                        <img src="images/propvect.svg" alt="propagation_vector">
+                        <div class="name">$\mathbf{m}_j = \sum_{n} \mathbf{\Psi}_j^{\mathbf{k}_n} \exp^{-2\pi i\mathbf{k}_n\cdot\mathbf{t}}$</div>
+                    </div>
+                    <div class="details">
+                        <p> For many materials, there is only a single propagation vector $k$: </p>
+                        <p> $$ \mathbf{m}_j = \mathbf{\Psi}_j^{\mathbf{k}} \exp^{-2\pi i\mathbf{k}\cdot\mathbf{t}} $$ </p>
+                        <p> The allowed propagation vectors $\mathbf{k}_n$ are related to each to each other by the rotation
+                            symmetry of the crystal structure (they are the <i>star</i> of $k$). </p>
+                        <p> In the case of a single-$k$ magnetic structure, the spin wave Hamiltonian is invariant under all
+                            rotations </p>
+                        <p> This allows the Hamiltonian to be expressed in a rotating coordinate system which allows SpinW to
+                            calculate more efficiently than codes which define the magnetic structure in terms of a supercell. </p>
+                    </div>
+                </div>
+            </content>
+        </div>
+    </section>
+
+    <section class="showit" id="magstr_theory3">
+        <div class="grid-wrapper">
+            <div class="header">
+                <div class="logo"></div>
+                <div class="section">Magnetic Structure Theory</div>
+            </div>
+            <content>
+                <div class="profile">
+                    <div class="basics">
+                        <img src="images/propvect.svg" alt="propagation_vector">
+                        <div class="name">$\mathbf{m}_j = \sum_{n} \mathbf{\Psi}_j^{\mathbf{k}_n} \exp^{-2\pi i\mathbf{k}_n\cdot\mathbf{t}}$</div>
+                    </div>
+                    <div class="details">
+                        <p> The <i>basis vector</i> $\mathbf{\Psi}_j^{\mathbf{k}}$ is in general complex. </p>
+                        <p> A complex basis vector requires both $\mathbf{k}$ and $-\mathbf{k}$ components to produce a real moment </p>
+                        <p> $$ \mathbf{m}_j = \mathbf{\Psi}_j^{\mathbf{k}} \left[\cos(-2\pi \mathbf{k}\cdot\mathbf{t}) + i\sin(-2\pi \mathbf{k}\cdot\mathbf{t})\right]
+                            + \mathbf{\Psi}_j^{-\mathbf{k}} \left[\cos(2\pi \mathbf{k}\cdot\mathbf{t}) + i\sin(2\pi \mathbf{k}\cdot\mathbf{t})\right] $$ </p>
+                        <p> $$ = 2\operatorname{Re}(\mathbf{\Psi}_j^{\mathbf{k}}) \cos(-2\pi \mathbf{k}\cdot\mathbf{t})
+                            + 2\operatorname{Im}(\mathbf{\Psi}_j^{\mathbf{k}}) \sin(-2\pi \mathbf{k}\cdot\mathbf{t}) $$ </p>
+                        <p> because $\mathbf{\Psi}_j^{-\mathbf{k}} = (\mathbf{\Psi}_j^{\mathbf{k}})^{\dagger} = \operatorname{Re}(\mathbf{\Psi}_j^{\mathbf{k}}) - i\operatorname{Im}(\mathbf{\Psi}_j^{\mathbf{k}})$ </p>
+                        <p> A real basis vector will only give a collinear magnetic structure, but possibly with a varying moment magnitude </p>
+                        <p> A complex basis vector with imaginary part perpendicular to the real part can give helical magnetic structures. </p>
+                        <p> <br> </p>
+                        <p> Reference: A.S. Wills, <i>J. Phys. IV France</i>, <b>11</b> (Pr9) 133-158 (2001). </p>
+                        <p> <a href="https://doi.org/10.1051/jp4:2001906" target="_blank">https://doi.org/10.1051/jp4:2001906</a> </p>
+                    </div>
+                </div>
+            </content>
+        </div>
+    </section>
+
+
+    <section class="subsection color--radiant" id="mag_str_input_head">
+        <div class="grid-wrapper">
+            <div class="logo"></div>
+            <h1><code>spinw.mag_str</code></h1>
+            <div class="description">
+                How SpinW stores the magnetic structure
+            </div>
+        </div>
+    </section>
+
+    <section class="blank" id="mag_str_input1">
+        <div class="grid-wrapper">
+            <div class="header">
+                <div class="logo"></div>
+                <div class="section">Storing magnetic structure</div>
+            </div>
+            <content>
+                <p> SpinW stores the magnetic structure in the <b><code>spinw.mag_str</code></b> field. </p>
+                <p> It can store arbitrary magnetic structures using Fourier components. </p>
+                <br>
+                <p> Subfields: </p>
+                <div style="margin-left:40px">
+                    <br>
+                    <ul>
+                        <li>The propagation vectors $\mathbf{k}$ are stored in <b><code>k</code></b></li>
+                        <li>The basis vectors $\mathbf{\Psi}_j$ are stored in <b><code>F</code></b></li>
+                        <li>The magnetic supercell in lattice units are stored in <b><code>nExt</code></b></li>
+                    </ul>
+                </div>
+                <br>
+                <p> The experimental magnetization can be obtained by multiplying <b><code>F</code></b> with the g-tensor!  </p>
+            </content>
+        </div>
+    </section>
+
+    <section class="showit" id="mag_str_input2">
+        <div class="grid-wrapper">
+            <div class="header">
+                <div class="logo"></div>
+                <div class="section">Storing magnetic structure</div>
+            </div>
+            <content>
+                <div class="profile">
+                    <div class="basics">
+                        <table class="defaulttable">
+                            <tr> <td>Propagation vector:</td> <td><b><code>mag_str.k</code></b></td> </tr>
+                            <tr> <td>Basis vector:</td> <td><b><code>mag_str.F</code></b></td> </tr>
+                            <tr> <td>Magnetic supercell:</td> <td><b><code>mag_str.nExt</code></b></td> </tr>
+                        </table>
+                    </div>
+                    <div id="details">
+                        <p> A helical or modulated single-$k$ structure can be stored by using <b><code>k</code></b> and <b><code>F</code></b>
+                            and setting <b><code>nExt</code></b> to a single unit cell <b><code>[1 1 1]</code></b> </p>
+                        <p> If there are <code>n</code> atoms in the structural unit cell, <b><code>F</code></b> should be an
+                            <code>n</code>-column matrix. </p>
+                        <p> A true <i>incommensurate</i> magnetic structure can be generated by giving an irrational wavevector $k$ </p>
+                        <p> Multi-$k$ incommensurate structures may only be approximated in SpinW (as in other codes) using a supercell </p>
+                    </div>
+                </div>
+            </content>
+        </div>
+    </section>
+
+    <section class="showit" id="mag_str_input3">
+        <div class="grid-wrapper">
+            <div class="header">
+                <div class="logo"></div>
+                <div class="section">Storing magnetic structure</div>
+            </div>
+            <content>
+                <div class="profile">
+                    <div class="basics">
+                        <table class="defaulttable">
+                            <tr> <td>Propagation vector:</td> <td><b><code>mag_str.k</code></b></td> </tr>
+                            <tr> <td>Basis vector:</td> <td><b><code>mag_str.F</code></b></td> </tr>
+                            <tr> <td>Magnetic supercell:</td> <td><b><code>mag_str.nExt</code></b></td> </tr>
+                        </table>
+                    </div>
+                    <div id="details">
+                        <p> A supercell magnetic structure can be stored by using a real <b><code>F</code></b> and <b><code>nExt</code></b>
+                            and setting <b><code>k</code></b> to zero <b><code>[0 0 0]</code></b>.
+                        <p> The number of magnetic moments stored in <code>F</code> are: <code>nMagExt = prod(nExt)*nMagAtom</code> </p>
+                        <p> So, <b><code>F</code></b> should be an <code>nMagExt</code>-column matrix with moments in the following order:</p>
+                        <figure class="image" style="width: 100%;">
+                            <img src="images/momentlayout.svg" style="width: 30%; display: block; margin-left: auto; margin-right: auto;" alt="Mag_str">
+                            <figcaption class="text">Ordering of the unit cell in the magnetic super-cell.</figcaption>
+                        </figure>
+            </content>
+        </div>
+    </section>
+
+    <section class="blank" id="mag_str_input4">
+        <div class="grid-wrapper">
+            <div class="header">
+                <div class="logo"></div>
+                <div class="section">Storing magnetic structure</div>
+            </div>
+            <content>
+                <h2>1D AFM spin chain</h2>
+                <div class="container" style="display: grid;    grid-template-columns: 47.5% 5% auto;
+                                                                grid-template-rows: 30% 5% auto; height: 100%;">
+                    <div style="grid-column-start:1; grid-column-end:4; grid-row-start:1; grid-row-end:2">
+                        <figure class="image" style="width: 30%; margin-left:30%">
+                            <img src="images/spinw_chain.svg" style="width: 100%;" alt="spin_chain">
+                        </figure>
+                    </div>
+                    <div style="grid-column-start:1; grid-column-end:2; grid-row-start:3; grid-row-end:4">
+                        <h4>Single-$k$ mode</h4>
+                        <figure class="code">
+                        <pre><code>mag_str.N_ext = [1 1 1];
+mag_str.k     = [1/2 0 0];
+mag_str.F     = [0;
+                 1;
+                 0];</code></pre>
+                        </figure>
+                    </div>
+                    <div style="grid-column-start:3; grid-column-end:4; grid-row-start:3; grid-row-end:4">
+                        <h4>Supercell mode $ $</h4>
+                        <figure class="code">
+                        <pre><code>mag_str.N_ext = [2 1 1];
+mag_str.k     = [0 0 0];
+mag_str.F     = [0 0;
+                 1 -1;
+                 0 0];</code></pre>
+                        </figure>
+                    </div>
+                </div>
+            </content>
+        </div>
+    </section>
+
+    <section class="blank" id="mag_str_input5">
+        <div class="grid-wrapper">
+            <div class="header">
+                <div class="logo"></div>
+                <div class="section">Storing magnetic structure</div>
+            </div>
+            <content>
+                <h2>120$^{\circ}$ structure on a triangular lattice</h2>
+                <div class="container" style="display: grid;    grid-template-columns: 37.5% 5% auto;
+                                                                grid-template-rows: 40% 5% auto; height: 100%;">
+                    <div style="grid-column-start:1; grid-column-end:4; grid-row-start:1; grid-row-end:2">
+                        <img src="images/tri120.svg"  style="display: block; margin-left: auto; margin-right: auto;" alt="spin_chain">
+                    </div>
+                    <div style="grid-column-start:1; grid-column-end:2; grid-row-start:3; grid-row-end:4">
+                        <h4>Single-$k$ mode</h4>
+                        <figure class="code">
+                        <pre><code>mag_str.N_ext = [1 1 1];
+mag_str.k     = [1/3 1/3 0];
+mag_str.F     = [1;
+                 i;
+                 0];</code></pre></figure>
+                    </div>
+                    <div style="grid-column-start:3; grid-column-end:4; grid-row-start:3; grid-row-end:4">
+                        <h4>Supercell mode $\ $</h4>
+                        <figure class="code">
+                        <pre><code>mag_str.N_ext = [3 3 1];
+mag_str.k     = [0 0 0];
+mag_str.F     = [1 -0.5  -0.5  -0.5  -0.5     1  -0.5     1  -0.5;
+                 0 0.86 -0.86  0.86 -0.86     0 -0.86     0  0.86;
+                 0    0     0     0     0     0     0     0     0];</code></pre>
+                        </figure>
+                    </div>
+                </div>
+            </content>
+        </div>
+    </section>
+
+    <section class="subsection color--radiant" id="genmagstr_head">
+        <div class="grid-wrapper">
+            <div class="logo"></div>
+            <h1><code>spinw.genmagstr</code></h1>
+            <div class="description">
+                How to define a magnetic structure in SpinW
+            </div>
+        </div>
+    </section>
+
+    <section class="blank" id="genmagstr1">
+        <div class="grid-wrapper">
+            <div class="header">
+                <div class="logo"></div>
+                <div class="section">Generate magnetic structure</div>
+            </div>
+            <content>
+                <h3> Generating a magnetic structure </h3> <br>
+                <p> Rather than changing the <code>mag_str</code> field directly, it is recommended to use
+                    the <code>genmagstr()</code> function to generate the magnetic structure</p>
+                <p> This function checks your input for errors and also provides short-cuts for common
+                    use-cases, using various <code>mode</code>s:</p>
+                <table style="width:70%">
+                    <tr> <td><code>helical</code></td> <td>single-$k$ helix</td> </tr>
+                    <tr> <td><code>fourier</code></td> <td>single-$k$ helix or modulated structure</td> </tr>
+                    <tr> <td><code>rotate</code></td> <td>uniform rotation of all moments</td> </tr>
+                    <tr> <td><code>direct</code></td> <td>direct input of structure using all fields <code>k</code>, <code>F</code>, <code>nExt</code> </td> </tr>
+                    <tr> <td><code>tile</code></td> <td>tile a magnetic supercell</td> </tr>
+                    <tr> <td><code>func</code></td> <td>using a function to generate <code>k</code>, <code>F</code>, <code>nExt</code></td> </tr>
+                    <tr> <td><code>random</code></td> <td>random moments</td> </tr>
+                </table>
+                <p> <code>genmagstr()</code> always respects <code>nExt</code>, so a combination of an input <code>nExt</code> and <code>k</code> will
+                    generate a magnetic supercell which is extended first by <code>nExt</code> and then by <code>k</code> </p>
+            </content>
+        </div>
+    </section>
+
+    <section class="blank" id="genmagstr2">
+        <div class="grid-wrapper">
+            <div class="header">
+                <div class="logo"></div>
+                <div class="section">Generate magnetic structure</div>
+            </div>
+            <content>
+                <h2><code>spinw.genmagstr('mode',...)</code></h2>
+                <h3>HELICAL</h3>
+                <ul>
+                    <li>Extend the given structure by applying rotations on the moments</li>
+                    <li>Moments are either given in rotating frame formalism (S,n) or as complex vectors (S)</li>
+                </ul>
+                <figure class="code">
+                        <pre><code class="matlab">chain.genmagstr('mode', 'helical', 'S', [1; 0; 0], 'n', [0 0 1], 'k', [1/8 0 0])
+chain.genmagstr('mode', 'helical', 'S', [1; 1i; 0], 'k', [1/8 0 0])</code></pre>
+                </figure><br>
+                <h3>FOURIER</h3>
+                <ul>
+                    <li>Generate a single-$k$ structure using Fourier components in <code>S</code></li>
+                </ul>
+                <figure class="code">
+                    <pre><code class="matlab">chain.genmagstr('mode', 'fourier', 'nExt', [8 1 1], 'S', {[1; 1i; 0] [1/8 0 0]})</code></pre>
+                </figure><br>
+                <h3>ROTATE</h3>
+                <ul>
+                    <li>Uniform rotation of all existing moments</li>
+                </ul>
+                <figure class="code">
+                    <pre><code class="matlab">chain.genmagstr('mode', 'rotate', 'n', [1 0 0])</code></pre>
+                </figure>
+            </content>
+        </div>
+    </section>
+
+    <section class="blank" id="genmagstr3">
+        <div class="grid-wrapper">
+            <div class="header">
+                <div class="logo"></div>
+                <div class="section">Generate magnetic structure</div>
+            </div>
+            <content>
+                <h2><code>spinw.genmagstr('mode',...)</code></h2>
+                <h3>DIRECT</h3>
+                <ul>
+                    <li>Direct input of every field</li>
+                </ul>
+                <figure class="code">
+                    <pre><code class="matlab">chain.genmagstr('mode', 'direct', 'nExt', [4 1 1], 'S', [1 0 -1 0; 0 1 0 -1; 0 0 0 0]);</code></pre>
+                </figure><br>
+                <h3>TILE</h3>
+                <ul>
+                    <li>Tile a magnetic supercell using the given data</li>
+                </ul>
+                <figure class="code">
+                    <pre><code class="matlab">chain.genmagstr('mode', 'tile', 'nExt', [2 1 1], 'S', [1 0; 0 -1; 0 0]);</code></pre>
+                </figure>
+            </content>
+        </div>
+    </section>
+
+    <section class="blank" id="genmagstr4">
+        <div class="grid-wrapper">
+            <div class="header">
+                <div class="logo"></div>
+                <div class="section">Generate magnetic structure</div>
+            </div>
+            <content>
+                <h2><code>spinw.genmagstr('mode',...)</code></h2>
+                <h3>FUNC</h3>
+                <ul>
+                    <li>Give parameters to a constraint function to generate magnetic structure</li>
+                </ul>
+                <figure class="code">
+                    <pre><code class="matlab">chain.genmagstr('mode', 'func', 'func', @gm_spherical3d, 'x', [pi/2 0.2 pi/2 0.4 pi/2 0.6 pi/2 0.8 0 0 0 0 0])</code></pre>
+                </figure>
+                <p>SpinW provides two built-in functions, <code>gm_planar</code> and <code>gm_spherical3d</code></p>
+                <ul>
+                    <li><code>gm_planar</code> produces a coplanar structure with fittable relative angles between spins and propagation vectors</li>
+                    <li><code>gm_spherical3d</code> is a generalisation of this for non-coplanar structure</li>
+                    <br>
+                </ul>
+                <h3>RANDOM</h3>
+                <ul>
+                    <li>Random magnetization vectors</li>
+                </ul>
+                <figure class="code">
+                    <pre><code class="matlab">chain.genmagstr('mode', 'random', 'nExt', [4 1 1])</code></pre>
+                </figure>
+            </content>
+        </div>
+    </section>
+
+ <section class="subsection color--radiant" id="examples_head">
+     <div class="grid-wrapper">
+         <div class="logo"></div>
+         <h1>Examples</h1>
+         <div class="description">
+             Examples of magnetic structures in SpinW
+         </div>
+     </div>
+ </section>
+
+ <section class="blank" id="examples1">
+     <div class="grid-wrapper">
+         <div class="header">
+             <div class="logo"></div>
+             <div class="section">Example magnetic structures</div>
+         </div>
+         <content>
+             <div class="container" style="display: grid; grid-template-columns: 70% 5% auto;
+  grid-template-rows: 30% 3% 30% 3% auto; height: 100%;">
+                 <div style="grid-column-start:1; grid-column-end:2; grid-row-start:1; grid-row-end:2">
+                     <b> Helical </b>
+                     <figure class="code">
+                    <pre><code class="matlab" style="font-size: 12.5pt">tri = spinw;
+tri.genlattice('lat_const', [4 4 6], 'angled', [90 90 120]);
+tri.addatom('r', [0 0 0], 'S', 2, 'label', 'MCr3', 'color', 'gold');
+tri.genmagstr('mode', 'helical', 'S', [1; 0; 0], 'n', [0 0 1], 'k', [1/3 1/3 0])</code></pre>
+                     </figure>
+                 </div>
+                 <div style="grid-column-start:3; grid-column-end:4; grid-row-start:1; grid-row-end:2">
+                     <img src="images/tri120.svg" style="width: available" alt="spin_chain">
+                 </div>
+                 <div style="grid-column-start:1; grid-column-end:2; grid-row-start:3; grid-row-end:4">
+                     <b> Fourier </b>
+                     <figure class="code">
+                    <pre><code class="matlab" style="font-size: 12.5pt">mmod = spinw;
+mmod.genlattice('lat_const', [4 4 6], 'angled', [90 90 90]);
+mmod.addatom('r', [0.5 0.5 0.5], 'S', 2, 'label', 'MCr3', 'color', 'gold');
+mmod.genmagstr('mode', 'fourier', 'S', [0; 1; 0], 'k', [0.07 0 0])</code></pre>
+                     </figure>
+                 </div>
+                 <div style="grid-column-start:3; grid-column-end:4; grid-row-start:3; grid-row-end:4">
+                     <img src="images/mod_chain.svg" style="width: available;" alt="spin_chain">
+                 </div>
+                 <div style="grid-column-start:1; grid-column-end:2; grid-row-start:5; grid-row-end:6">
+                     <b> Rotate </b>
+                     <figure class="code">
+                    <pre><code class="matlab" style="font-size: 12.5pt">tri = spinw;
+tri.genlattice('lat_const', [4 4 6], 'angled', [90 90 120]);
+tri.addatom('r', [0 0 0], 'S', 2, 'label', 'MCr3', 'color', 'gold');
+tri.genmagstr('mode', 'helical', 'S', [1; 0; 0], 'n', [0 0 1], 'k', [1/3 1/3 0])
+tri.genmagstr('mode', 'rotate', 'n', [0 0 1], 'phid', 30)</code></pre>
+                     </figure>
+                 </div>
+                 <div style="grid-column-start:3; grid-column-end:4; grid-row-start:5; grid-row-end:6">
+                     <img src="images/tri120_rot.svg" style="width: 80%;" alt="spin_chain">
+                 </div>
+             </div>
+         </content>
+     </div>
+ </section>
+
+ <section class="blank" id="examples2">
+     <div class="grid-wrapper">
+         <div class="header">
+             <div class="logo"></div>
+             <div class="section">Example magnetic structures</div>
+         </div>
+         <content>
+             <div class="container" style="display: grid;    grid-template-columns: 70% 5% auto;
+                                                                grid-template-rows: 42.50% 5% auto; height: 100%;">
+                 <div style="grid-column-start:1; grid-column-end:2; grid-row-start:1; grid-row-end:2">
+                     <b> Direct </b>
+                     <figure class="code">
+                    <pre><code class="matlab" style="font-size: 12.5pt">sq = spinw;
+sq.genlattice('lat_const', [4 4 6], 'angled', [90 90 90]);
+sq.addatom('r', [0.5 0.5 0.5], 'S', 2, 'label', 'MCr3', 'color', 'gold');
+sq.genmagstr('mode', 'direct', 'S', [0 0 0 0; 1 -1 -1 1; 0 0 0 0], 'nExt', [2 2 1])</code></pre>
+                     </figure>
+                 </div>
+                 <div style="grid-column-start:3; grid-column-end:4; grid-row-start:1; grid-row-end:2">
+                     <img src="images/square_afm.svg" style="width: 75%;"   alt="spin_chain">
+                 </div>
+                 <div style="grid-column-start:1; grid-column-end:2; grid-row-start:3; grid-row-end:4">
+                     <b> Tile </b>
+                     <figure class="code">
+                    <pre><code class="matlab" style="font-size: 12.5pt">fct = spinw;
+fct.genlattice('lat_const', [4 4 6], 'angled', [90 90 90]);
+fct.addatom('r', [0 0 0], 'S', 2, 'label', 'MCr3', 'color', 'gold');
+fct.addatom('r', [0.5 0.5 0], 'S', 2, 'label', 'MCr3', 'color', 'black');
+fct.genmagstr('mode', 'tile', 'S', [0 0; 1 -1; 0 0], 'nExt', [2 2 1])</code></pre>
+                     </figure>
+                 </div>
+                 <div style="grid-column-start:3; grid-column-end:4; grid-row-start:3; grid-row-end:4">
+                     <img src="images/square_bc_afm.svg" style="width: 75%;" alt="spin_chain">
+                 </div>
+             </div>
+         </content>
+     </div>
+ </section>
+
+ <section class="blank" id="examples3">
+     <div class="grid-wrapper">
+         <div class="header">
+             <div class="logo"></div>
+             <div class="section">Example magnetic structures</div>
+         </div>
+         <content>
+             <div class="container" style="display: grid;    grid-template-columns: 70% 5% auto;
+                                                                grid-template-rows: 60% 5% auto; height: 100%;">
+                 <div style="grid-column-start:1; grid-column-end:2; grid-row-start:1; grid-row-end:2">
+                     <b> Function </b>
+                     <figure class="code">
+                    <pre><code class="matlab" style="font-size: 12.5pt">fct = spinw;
+fct.genlattice('lat_const', [4 4 6], 'angled', [90 90 90]);
+fct.addatom('r', [0 0 0], 'S', 2, 'label', 'MCr3', 'color', 'gold');
+fct.addatom('r', [0.5 0.5 0], 'S', 2, 'label', 'MCr3', 'color', 'black');
+fct.genmagstr('mode', 'func', 'func', @gm_planar, 'x0', [0 pi/2 1/2 1/2 1 0 0])</code></pre>
+                     </figure>
+                     <p>Parameters for gm_planar is: [phi1 phi2 ... kx ky kz n_theta n_phi], n_theta and n_phi define the normal of the plane. phiN are relative phases within the plane</p>
+                 </div>
+                 <div style="grid-column-start:3; grid-column-end:4; grid-row-start:1; grid-row-end:2">
+                     <img src="images/square_func.svg" style="width: 70%; float: right" alt="spin_chain">
+                 </div>
+                 <div style="grid-column-start:1; grid-column-end:2; grid-row-start:3; grid-row-end:4">
+                     <b>Random</b>
+                     <figure class="code">
+                    <pre><code class="matlab" style="font-size: 12.5pt">fct = spinw;
+fct.genlattice('lat_const', [4 4 6], 'angled', [90 90 90]);
+fct.addatom('r', [0.5 0.5 0], 'S', 2, 'label', 'MCr3', 'color', 'gold');
+fct.genmagstr('mode', 'random', 'nExt', [2 2 1])</code></pre>
+                     </figure>
+                 </div>
+                 <div style="grid-column-start:3; grid-column-end:4; grid-row-start:3; grid-row-end:4">
+                     <img src="images/square_random.svg" style="width: 70%; float: right" alt="spin_chain">
+                 </div>
+             </div>
+         </content>
+     </div>
+ </section>
+
+
+    <section class="subsection color--radiant" id="optimise_head">
+        <div class="grid-wrapper">
+            <div class="logo"></div>
+            <h1>Optimising magnetic structures</h1>
+            <div class="description">
+                How to refine structures in SpinW
+            </div>
+        </div>
+    </section>
+
+    <section class="blank" id="optMagStrOptions">
+        <div class="grid-wrapper">
+            <div class="header">
+                <div class="logo"></div>
+                <div class="section">Optimize magnetic structures</div>
+            </div>
+            <content>
+                <p>The magnetic structure can be optimised as a classical ground state of the spin Hamiltonian, using:</p>
+                <h2><code>sw.optmagk()</code></h2>
+                <div style="margin-left:40px">
+                    <ul>
+                        <li>determines the magnetic propagation vector + n-vector</li>
+                    </ul>
+                </div>
+                <br>
+                <h2><code>sw.optmagtsteep()</code></h2>
+                <div style="margin-left:40px">
+                    <ul>
+                        <li>optimise magnetic structure for a given k-vector by succesively rotating each moment to the Weiss
+                            field direction</li>
+                        <li>fastest</li>
+                        <li>recommended if k-vector is known</li>
+                    </ul>
+                </div>
+                <br>
+                <h2><code>sw.optmagstr()</code></h2>
+                <div style="margin-left:40px">
+                    <ul>
+                        <li>optimise magnetic structure for minimum energy using non-linear optimization (fminsearch)</li>
+                        <li>can include a constraint function (<code>@gm_planar()</code>, etc.)</li>
+                    </ul>
+                </div>
+                <br>
+                <h2><code>sw.anneal()</code></h2>
+                <div style="margin-left:40px">
+                    <ul>
+                        <li>performs simulated annealing, using the Metropolis algorithm</li>
+                        <li>can calculate thermodynamic properties</li>
+                    </ul>
+                </div>
+            </content>
+        </div>
+    </section>
+
+    <!--TODO make flow diagram for spin optimisation-->
+    <section class="blank" id="optMagStrFns">
+        <div class="grid-wrapper">
+            <div class="header">
+                <div class="logo"></div>
+                <div class="section">spinw.optmagstr(‘func’,@func, ‘xmin’, x1, ‘xmax’, x2,...)</div>
+            </div>
+            <content>
+                <p>To optimize magnetic structure with constraints, use the <code>spinw.optmagstr()</code> method:</p>
+                <div style="margin-left:40px">
+                    <ul>
+                        <li>lots of parameters to fit: $3N_{mag} + 6$</li>
+                        <li>ground state magnetic structure with <b>constrained optimization</b> (simplex method)</li>
+                        <li>constraints through external function:</li>
+                        $$[M, k, n] = @(x)\mathtt{func}(M0, x)$$
+                        <li><b><code>@gm_planar()</code></b> planar magnetic structure:</li>
+                        $$[M, k, n] = \mathtt{@gm\_planar}(M0, x) \\
+                        x = (\varphi_1,\varphi_2,... ,k_x,k_y,k_z,n_\Theta,n_\varphi)$$
+                        $\varphi_n$ are phase angles for each of the $n$ spins in the extended unit cell <br>
+                        $n_{\Theta}$ and $n_{\varphi}$ are the angles defining the plane normal
+                        <li><b><code>@gm_spherical3d()</code></b> general magnetic structure:</li>
+                        $$[M, k, n] = \mathtt{@gm\_spherical3d}(M0, x) \\
+                        x = (\varphi_1,\Theta_1,\varphi_2,\Theta_2,... ,k_x,k_y,k_z,n_\Theta,n_\varphi)$$
+                        $\varphi_n$ and $\Theta_n$ are azimuth and polar phase angles for each of the $n$ spins in the extended unit cell <br>
+                        <li>limits: <b><code>xmin</code></b> and <b><code>xmax</code></b>, starting value <b><code>x0</code></b></li>
+                    </ul>
+                </div>
+            </content>
+        </div>
+    </section>
+
+ <section class="subsection color--radiant" id="final_head">
+     <div class="grid-wrapper">
+         <div class="logo"></div>
+         <h1>Spin Wave Calculations</h1>
+         <div class="description">
+             Notes on how magnetic structure is used in spin wave calculations in SpinW
+         </div>
+     </div>
+ </section>
+
+ <section class="blank" id="magStr_RF2">
+     <div class="grid-wrapper">
+         <div class="header">
+             <div class="logo"></div>
+             <div class="section">Magnetic structure in rotating frame</div>
+         </div>
+         <content>
+
+             <p>For spin wave calculation, the complex magnetic structure is converted to the rotating frame representation using the
+                 <code>spinw.magstr()</code> function.</p>
+             <p>Output of <code>spinw.magstr()</code> is a struct with fields:</p>
+             <ul>
+                 <li>size of magnetic supercell in l.u. stored in <b><code>nExt</code></b></li>
+                 <li>single k-vector stored in <b><code>k</code></b></li>
+                 <li>vector normal to the spiral plane is stored in <b><code>n</code></b></li>
+                 <li>real magnetic moment directions (spin quantization axis) are stored in <b><code>S</code></b></li>
+             </ul>
+
+             <p>The representation allows an additional <code>k=0</code> component parallel to <code>n</code>, however this is rarely used.</p>
+             <p>The conversion from Fourier components to rotating frame representation is not always possible, in this case
+                 <code>magstr()</code> gives the best approximation and gives a warning. The conversion is approximate:</p>
+             <ul>
+                 <li>multi-k structures</li>
+                 <li>non-Bravais lattice with counter-rotating incommensurate spirals</li>
+                 <li>non-Bravais lattice with non-coplanar spirals</li>
+                 <li>non-Bravais antiferromagnet with non-coplanar moments</li>
+             </ul>
+         </content>
+     </div>
+ </section>
+
+ <section class="blank" id="magStr_RF">
+     <div class="grid-wrapper">
+         <div class="header">
+             <div class="logo"></div>
+             <div class="section">Magnetic structure and spin wave Hamiltonian</div>
+         </div>
+         <content>
+
+             <p> The spin wave Hamiltonian is expressed in a basis of creation and annihilation operators, one each for each spin
+                 in the magnetic unit cell </p>
+             <p> For a supercell only description of the magnetic structure (with a $k=0$ propagation vector), SpinW will use only
+                 this basis, so the size of the Hamiltonian will be $2N\times2N$ where $N$ is the number of spins in the extended unit cell. </p>
+             <p> For a single-$k$ structure, SpinW also has to consider the $+k$ and $-k$ branches (as well as $k=0$) so there are $6N$
+                 operators in the basis. </p>
+             <p> In the 1D chain case, we have only 2 spins in the unit cell, so the supercell description gives 4-operator basis but
+                 the rotating frame description needs 6 operators. </p>
+             <p> In the 2D triangular lattice, we have $k=[\frac{1}{3}\frac{1}{3}1]$ so there are 9 spins in the unit cell giving an 18-operator
+                 basis in the supercell method. In contrast in the rotating frame description, we still only have 6 operators </p>
+             <p> Larger matrices take longer to diagonalise so it's important to try to reduce the size of the Hamiltonian by using the
+                 rotating frame description if possible </p>
+
+         </content>
+     </div>
+ </section>
+</section>
