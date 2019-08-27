@@ -357,38 +357,38 @@ t_spinw_single = toc;
         </div>
     </section>
 
-    <section class="showit color--dark" id="pcsmo5">
-        <div class="grid-wrapper">
-            <div class="header">
-                <div class="logo"></div>
-                <div class="section"> Plot the simulation </div>
-            </div>
-            <content>
-                <div class="profile">
-                    <div class="basics">
-                        <figure class="image" style="width: 90%; margin-right:10%">
-                            <img src="images/pcsmo_spinw.png" alt="PCSMO data vs SpinW calculation">
-                        </figure>
-                        <div class="name">Published data and SpinW simulation of Pr(Ca$_{0.9}$Sr$_{0.1}$)$_2$Mn$_2$O$_7$</div>
-                        <div class="role"> </div>
-                    </div>
-                    <div id="details">
-                        <h3> Plot the simulation </h3>
-                        <p> Reflect the data back to the negative $Q_h$ side, remove the empty bins (with <code> compact </code>) <p>
-                        <p> Convert the data to a <code> d2d </code> object and then use <code> spaghetti_plot </code> to plot the
-                            data and simulation (already a <code> d2d </code> object) together </p>
-                        <p> </p>
-                        <figure class="code">
-                            <pre><code class="matlab">
-wss = symmetrise_sqw(ws_sub(idx),[0 1 0],[0 0 1],[0 0 0]);
-spaghetti_plot([compact(d2d(wss)) compact(wsim)])
-lz 0 2
-                            </code></pre>
-                        </figure>
-                    </div>
-                </div>
-            </content>
-        </div>
-    </section>
+<!--    <section class="showit color&#45;&#45;dark" id="pcsmo5">-->
+<!--        <div class="grid-wrapper">-->
+<!--            <div class="header">-->
+<!--                <div class="logo"></div>-->
+<!--                <div class="section"> Plot the simulation </div>-->
+<!--            </div>-->
+<!--            <content>-->
+<!--                <div class="profile">-->
+<!--                    <div class="basics">-->
+<!--                        <figure class="image" style="width: 90%; margin-right:10%">-->
+<!--                            <img src="images/pcsmo_spinw.png" alt="PCSMO data vs SpinW calculation">-->
+<!--                        </figure>-->
+<!--                        <div class="name">Published data and SpinW simulation of Pr(Ca$_{0.9}$Sr$_{0.1}$)$_2$Mn$_2$O$_7$</div>-->
+<!--                        <div class="role"> </div>-->
+<!--                    </div>-->
+<!--                    <div id="details">-->
+<!--                        <h3> Plot the simulation </h3>-->
+<!--                        <p> Reflect the data back to the negative $Q_h$ side, remove the empty bins (with <code> compact </code>) <p>-->
+<!--                        <p> Convert the data to a <code> d2d </code> object and then use <code> spaghetti_plot </code> to plot the-->
+<!--                            data and simulation (already a <code> d2d </code> object) together </p>-->
+<!--                        <p> </p>-->
+<!--                        <figure class="code">-->
+<!--                            <pre><code class="matlab">-->
+<!--wss = symmetrise_sqw(ws_sub(idx),[0 1 0],[0 0 1],[0 0 0]);-->
+<!--spaghetti_plot([compact(d2d(wss)) compact(wsim)])-->
+<!--lz 0 2-->
+<!--                            </code></pre>-->
+<!--                        </figure>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </content>-->
+<!--        </div>-->
+<!--    </section>-->
 
 </section>
