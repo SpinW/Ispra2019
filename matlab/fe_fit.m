@@ -4,29 +4,15 @@
 % neutron scattering dataset to a SpinW using the Horace 
 % ( http://horace.isis.rl.ac.uk ) package for data handling.
 %
-% The dataset is a measurement of the spinwaves of bcc-Fe using the MAPS
-% spectrometer at the ISIS facility.
-%
-% The dataset, and other materials from the Horace course run periodically
-% by ISIS may be found here:  
-% ftp://ftp.nd.rl.ac.uk/scratch/Ewings/HoraceWorkshop2017.zip
+% 
 %
 % Edit this line with the location of the sqw file
-sqw_file = 'C:/HoraceWorkshop/data/fe.sqw';
+data_path = 'fe_redux';
+sqw_file = fullfile('sqw','iron.sqw');
 
 % If the data file doesn't exist, create a fake version
 if ~exist(sqw_file, 'file')
-    % Use the Horace "demo" generating scripts 
-    % - please be patient: this will take about 10 min.
-    cur_dir = pwd;
-    demo_dir = [fileparts(which('fake_data')) '/demo'];
-    cd(demo_dir);
-    setup_demo_data;
-    spes = arrayfun(@(x)sprintf('HoraceDemoDataFile%d.nxspe',x), 1:23, 'UniformOutput', 0);
-    gen_sqw(spes, '', sqw_file, 787, 1, [1 1 1]*2.87, [1 1 1]*90, ...
-        [1 0 0], [0 1 0], 0:4:90, 0, 0, 0, 0);
-    delete('*.nxspe');
-    cd(cur_dir);
+    generate_iron	
 end
 
 % Make a series of 1D cuts of the data
