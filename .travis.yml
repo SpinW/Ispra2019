@@ -1,20 +1,19 @@
-language: shell
+language: node_js
 dist: xenial
 node_js:
-  - 7
+- 9
+before_script:
+- export TRAVIS_REPO_NAME=${TRAVIS_REPO_SLUG#*/}
+- npm install -g decktape
+script:
+- sleep 2m
+- decktape reveal http://www.spinw.org/$TRAVIS_REPO_NAME $TRAVIS_REPO_NAME.pdf
+after_success:
+- git config --global user.email "travis@travis-ci.org"
+- git config --global user.name "Travis CI"
+- git add $TRAVIS_REPO_NAME.pdf
+- git commit -m 'Presentation update [ci skip]'
+- git push -f -q https://$GH_TOKEN@github.com/SpinW/$TRAVIS_REPO_NAME.git master
 env:
   global:
-    - secure: pCjT/7H5biKb3Ths1iZVT8ccBDrdtcGF4BvYmvBaBxgk8DnUNE+2FzT20P3FbsjY8jC+d4xpqXblCr1vl0AEx/qBvtLPkweoOsal+aI72h/FIDiSx+BF/oEmri0bvpMPaAuXnjjYTLaZbZoj66LhoDvEbtFePKL1PGq4qVaPHv6/PViiGh4MfIoy0P2PP5eHdGgDuiHCZ7aQCbeNDCBFWp4S+8SMsD41xtHaF2/9sPei0Osr$
-before_script:
-  - export TRAVIS_REPO_NAME=${TRAVIS_REPO_SLUG#*/}
-  - npm install -g decktape
-script:
-  # This pause is for Github to compile
-  - sleep 2m
-  - decktape reveal http://www.spinw.org/$TRAVIS_REPO_NAME $TRAVIS_REPO_NAME.pdf
-after_success:
-  - git config --global user.email "travis@travis-ci.org"
-  - git config --global user.name "Travis CI"
-  - git add $TRAVIS_REPO_NAME.pdf
-  - git commit -m 'Presentation update [ci skip]'
-  - git push -f -q https://$GH_TOKEN@github.com/SpinW/$TRAVIS_REPO_NAME.git master
+    secure: CmynLVCMRlxsPZO65i/Ph0ikdOvKn/BDy5rRtCMhsDyzqvO7b/dSEOBsgKqYqsmkzsIyj0Gw7jUCKWHnJ0tGIzbioymcyjXHBhU1F9GYOeABLWEX7tZ6n5brzW03GsrOgytxvbs9ioVO13l1ARn7sND8MAMnsYJZYEVKIdVUZddU9pQ/pAqgtS0FrOP0MU99AK30W3rpRn7RtlC1NmqqdF8/uspKt71z8IF1PzAbXSfSLffyuJb6OdxiC9WlCEI9NQSBLaT6iyloYOV53nXFoyyxcLQ7aDmUSVwkuxGDzltocqL689gg3qrHnaNQ103YYiAM/SjOsQBNZ6D03dJ8MoMJiDGxM0NJayvkRhvNu9ssE3a9NnqXmHZx1r8qE9s76vtF93vTPjpHYtJ58uKPRwmz1mZkUFEcU77Q5VPLD+G1l5M1MQWV+zaDNEaSgh1NQa1lFBaobJRTTOOgp0qeIZJ1bkywT8uA45brwxGaTxq/EasxPuajEdG+pGW5r0KsuMdoL1pdgKQTFNsnTUJYU+QdcD0ipLE4uQ98LHzUr+15PSjk++BECC6MPpuRFjiHd+mp0NOW9NyfSUtfjlUSnHjViyb9rueCTR06BzKB0NIFsR+ESbjIyENVcy77wHrLy39NgHvAfj+cDhjrU73hNwZAPvSVW4j4EC4kCyxbU9w=
