@@ -6,11 +6,11 @@ env:
     secure: pCjT/7H5biKb3Ths1iZVT8ccBDrdtcGF4BvYmvBaBxgk8DnUNE+2FzT20P3FbsjY8jC+d4xpqXblCr1vl0AEx/qBvtLPkweoOsal+aI72h/FIDiSx+BF/oEmri0bvpMPaAuXnjjYTLaZbZoj66LhoDvEbtFePKL1PGq4qVaPHv6/PViiGh4MfIoy0P2PP5eHdGgDuiHCZ7aQCbeNDCBFWp4S+8SMsD41xtHaF2/9sPei0Osr$
 before_script:
   - npm install -g decktape
+  - rm ${PROJECT}.pdf
 script:
-  - sleep 2m
+  - sleep 2s
   - decktape reveal http://www.spinw.org/${PROJECT} ${PROJECT}.pdf
 after-success:
-  - rm ${PROJECT}.pdf
   - git config --global user.email "travis@travis-ci.org"
   - git config --global user.name "Travis CI"
   - git add ${PROJECT}.pdf
