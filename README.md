@@ -17,7 +17,8 @@ Magnetic ordering, Horace and more complex examples.
 - Duc Le - STFC Harwell
 
 ## Viewing
+The presentation can be found online at [http://spinw.org/Ispra2019](http://spinw.org/Ispra2019)
 
 An up to date pdf can be found at [http://spinw.org/Ispra2019/Ispra2019.pdf](http://spinw.org/Ispra2019/Ispra2019.pdf)
 
-And online at [http://spinw.org/Ispra2019](http://spinw.org/Ispra2019)
+The PDF status is [![Build Status](https://travis-ci.org/SpinW/Ispra2019.svg?branch=master)](https://travis-ci.org/SpinW/Ispra2019)
