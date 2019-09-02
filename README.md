@@ -13,8 +13,8 @@ Magnetic ordering, Horace and more complex examples.
 
 ## Tutors
 
-Simon Ward - ESS DMSC
-Duc Le - STFC Harwell
+- Simon Ward - ESS DMSC
+- Duc Le - STFC Harwell
 
 ## Viewing
 
