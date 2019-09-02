@@ -3,7 +3,7 @@ node_js:
   - 7
 env:
   global:
-    secure: pCjT/7H5biKb3Ths1iZVT8ccBDrdtcGF4BvYmvBaBxgk8DnUNE+2FzT20P3FbsjY8jC+d4xpqXblCr1vl0AEx/qBvtLPkweoOsal+aI72h/FIDiSx+BF/oEmri0bvpMPaAuXnjjYTLaZbZoj66LhoDvEbtFePKL1PGq4qVaPHv6/PViiGh4MfIoy0P2PP5eHdGgDuiHCZ7aQCbeNDCBFWp4S+8SMsD41xtHaF2/9sPei0Osr$
+    - secure: pCjT/7H5biKb3Ths1iZVT8ccBDrdtcGF4BvYmvBaBxgk8DnUNE+2FzT20P3FbsjY8jC+d4xpqXblCr1vl0AEx/qBvtLPkweoOsal+aI72h/FIDiSx+BF/oEmri0bvpMPaAuXnjjYTLaZbZoj66LhoDvEbtFePKL1PGq4qVaPHv6/PViiGh4MfIoy0P2PP5eHdGgDuiHCZ7aQCbeNDCBFWp4S+8SMsD41xtHaF2/9sPei0Osr$
 before_script:
   - export TRAVIS_REPO_NAME=${TRAVIS_REPO_SLUG#*/}
   - npm install -g decktape
@@ -16,5 +16,7 @@ after_success:
   - git config --global user.name "Travis CI"
   - git add $TRAVIS_REPO_NAME.pdf
   - git commit -m 'Presentation update [ci skip]'
-  - git remote add originL https://${GH_TOKEN}@github.com/SpinW/$TRAVIS_REPO_NAME.git > /dev/null 2>&1
-  - git push --quiet --set-upstream originL origin
+  #- git remote add originL https://${GH_TOKEN}@github.com/SpinW/$TRAVIS_REPO_NAME.git > /dev/null 2>&1
+  - git push -f -q https://$GH_TOKEN@github.com/SpinW/$TRAVIS_REPO_NAME.git master
+  
+  #- git push --quiet --set-upstream originL master
