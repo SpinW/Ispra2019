@@ -1,4 +1,5 @@
-language: node_js
+language: shell
+dist: xenial
 node_js:
   - 7
 env:
@@ -16,7 +17,4 @@ after_success:
   - git config --global user.name "Travis CI"
   - git add $TRAVIS_REPO_NAME.pdf
   - git commit -m 'Presentation update [ci skip]'
-  #- git remote add originL https://${GH_TOKEN}@github.com/SpinW/$TRAVIS_REPO_NAME.git > /dev/null 2>&1
   - git push -f -q https://$GH_TOKEN@github.com/SpinW/$TRAVIS_REPO_NAME.git master
-  
-  #- git push --quiet --set-upstream originL master
