@@ -1,15 +1,23 @@
-# BasicPresentation
+# Ispra 2019
 
-This is the first attempt at making a presentation using reveal.js and a template base.
+This is the presentation given at the Neutron and Muons for Magnetism 2019 SISN Advanced School in Ispra 2019
 
-## Installation
+### Part 1
 
-`master.html` and `slides.html` should be copied from the `presentation_base` directory into the root directory and  `master.html` renamed to `index.html`.
+Introduction to Linear spin-wave theory, SpinW and basic examples.
 
-## Using
+### Part 2
 
-Slides are in `slides.html` and can be modified accordingly (duh!). 
+Magnetic ordering, Horace and more complex examples.
 
-## For publishing
 
-This can be published by creating a gh-pages branch and will be served at `www.spinw.org/BasicPresentation`. An accompanying post should be created in the `spinw.github.io` repo under `pages/_presentations` so it is automaticall published from the main site.
+## Tutors
+
+Simon Ward - ESS DMSC
+Duc Le - STFC Harwell
+
+## Viewing
+
+An up to date pdf can be found at [http://spinw.org/Ispra2019/Ispra2019.pdf](http://spinw.org/Ispra2019/Ispra2019.pdf)
+
+And online at [http://spinw.org/Ispra2019](http://spinw.org/Ispra2019)
