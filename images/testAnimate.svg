@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg id="spinwaves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
+    <script type="text/javascript" xlink:href="//cdnjs.cloudflare.com/ajax/libs/svg.js/2.7.1/svg.min.js"></script>
+    <script type="text/javascript">
+        <![CDATA[
+
+        var mySVG = SVG("spinwaves");
+
+        var showWave = true;
+
+        <!--Starting positions-->
+        sx = 40;
+        sy = 30;
+        lx = 0;
+        ly = 50;
+
+        <!--Radius' of spins-->
+        var radX = 20;
+        var radY = 10;
+        var r = 20;
+
+        <!--Animation duration and placing-->
+        var duration = 15000; //--- /1000 secs/cycle ---
+        var sep = 90;
+        var ySep = 150;
+        var nx = 12;
+        var arrH = 10;
+        var swoffset = 40;
+        if (!showWave) {
+            ySep = ySep - swoffset/2;
+        }
+
+        <!--The k-vectors to animate-->
+        var kVec = [1, 2, 4, 8];
+
+        <!--Plot all spins for all k-vectors-->
+        for (let j = 0; j< kVec.length; j++){
+
+            var k = kVec[j];
+            yPos = sy + ySep*j;
+            mySVG.line(sx-radX, sy+ySep*j +ly, sx+sep*(nx-1)+radX, sy+ySep*j+ly).attr({ stroke:'#51A0D5', 'stroke-width':3 })
+            if (showWave) {
+                makeSpinWave(j)
+            }
+            for (let i = 0; i< nx; i++){
+                makeProcession(sx + i*sep, yPos, i, k)
+                if ( (i >= Math.floor((nx-k)/2)) && (i < Math.floor((nx+k)/2)) ) {
+                    mySVG.text('i = ' + (i - Math.floor((nx-k)/2)).toString()).move( sx + i*sep + 1.5*r/2, yPos+ly).font({ anchor: 'center' })
+                }
+            }
+
+            var ktext;
+            if (k > 1) {
+                ktext = mySVG.text('k = 1/' + k.toString())
+            } else {
+                ktext = mySVG.text('k = 0');
+            }
+            ktext.move(sx-radX, yPos - 2*radY - 10)
+        }
+
+        <!--Set the viewbox-->
+        var arrayHeight = (ySep)*kVec.length;
+        if ( showWave ) {
+             arrayHeight = arrayHeight + swoffset/2;
+        }
+        var arrayWidth = sy + nx*sep + (radX*2);
+        mySVG.viewbox(0, 0, arrayWidth, arrayHeight);
+
+        <!--=================================-->
+        <!--Functions-->
+        <!--=================================-->
+
+        //---rotation of a spin ---
+        function processVec(thisSpin, i, k) {
+            thisSpin.vec.animate(duration).during(
+                function(pos) {
+                    ex = thisSpin.x-lx;
+                    ey = thisSpin.y-ly;
+                    angleRads = 2*pos*Math.PI;
+                    phase = 2*Math.PI*i/k;
+                    var fx = ex + radX*Math.sin(angleRads + Math.PI/2 + phase)
+                    var fy = ey + radY*Math.cos(angleRads + Math.PI/2 + phase)
+                    thisSpin.vec.attr({x2:fx, y2:fy+arrH/2})
+                    thisSpin.dir.attr({x2:fx, y2:fy})
+                }
+            ).loop()
+        }
+
+        //---build a spinwave which can be  animated ---
+        function makeSpinWave(address){
+            var sineWave = mySVG.polyline().attr({ fill: 'none', 'stroke-width':2, stroke:'blue' });
+            buildSineWave(sineWave, address)
+        }
+
+
+        //---parametric equation of cosine wave---
+        function buildSineWave(sineWave, j) {
+
+            sineWave.animate(duration).during(function(pos){
+                var amplitude = 20;
+                var originX = sx
+                var originY = sy+ySep*j +ly + swoffset;
+
+                var width = sep*(nx-1)
+                var pointSpacing = 1
+                var phaseAngle = 2*Math.PI/kVec[j]
+
+                var origin = { //origin of axes
+                    x: originX,
+                    y: originY
+                }
+
+                var points = []
+
+                var x,y
+                for (var i = 0; i < width/pointSpacing; i++) {
+                    x = i * pointSpacing + origin.x
+                    y = Math.cos(2*Math.PI*pos + phaseAngle*i*pointSpacing/sep) * amplitude + origin.y
+                    points.push([x, y])
+                }
+
+                sineWave.attr({points:points.join(" ")})
+            }).loop()
+        }
+
+        //---build an atom representation ---
+        function atom(x, y){
+            var radial = mySVG.gradient('radial', function(stop) {
+	            stop.at(0, '#FF9F33')
+                stop.at(1, '#ffc380')
+            })
+            mySVG.circle(r).attr({ cx: x, cy: y }).radius(r/2).fill(radial).attr({ stroke:'black', 'stroke-width':0.5 })
+        }
+
+        //--- function for a simple arrowhead ---
+        function arrowhead(add){
+            add.path('M 0 0 L 10 5 L 0 10 z').fill('red').scale(0.25)
+        }
+
+        //--- package up the spin vars ---
+        function makeSpin(v,d, x1, y1){
+            var spin = {
+                vec: v,
+                dir: d,
+                x: x1,
+                y: y1
+            }
+            return spin;
+        }
+
+        //--- build an atom with spin ---
+        function makeProcession(x1, y1, i, k) {
+            ex = x1+lx;
+            ey = y1+ly;
+            var c = mySVG.circle(2*radX).attr({ stroke:'black', 'stroke-width':1.5 , fill:'none', cx:x1, cy:y1}).transform({ scaleY: radY/radX })
+            var l0  = mySVG.line(x1, y1, x1+radX, y1).attr({ stroke:'black', 'stroke-width':2 })
+            var arm = mySVG.line(ex, ey, x1, y1).attr({ stroke:'red', 'stroke-width':5 }).marker('end', arrH, arrH, arrowhead)
+            atom(ex, ey)
+
+            s = new makeSpin(arm, l0, ex, ey);
+            processVec(s, i, k)
+        }
+
+        ]]>
+    </script>
+</svg>
