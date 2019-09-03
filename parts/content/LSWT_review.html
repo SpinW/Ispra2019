@@ -3,8 +3,60 @@
         <div class="logo"></div>
         <h1>Linear Spin Wave Theory Review</h1>
         <div class="description">
-            5 minute recap on LSWT
+            15 minute introduction on LSWT
         </div>
+    </div>
+</section>
+
+<section class="blank" id="LSWRev0">
+    <div class="grid-wrapper">
+        <div class="header">
+            <div class="logo"></div>
+            <div class="section">Spin Waves</div>
+        </div>
+        <content>
+        <h3>Spin waves</h3>
+        <p> Spin waves (magnons) are propagating disturbances of an ordered magnetic lattice </p>
+        <object data="images/FMchain.svg" type="image/svg+xml" style="margin: auto; width: 50%; border: 0px solid green; display: block;">
+            <img src="images/FMchain.png" />
+        </object>
+        <p> The magnetic ordering arises due to the exchange interactions $J_{ij}$ between electrons on atomic sites $i$ and $j$. </p>
+        <p> The dispersion relation $\omega(\mathbf{q})$ of spin waves can be measured by inelastic neutron scattering, and directly
+            depends on the exchange interactions </p>
+        <p> Spin waves are deviations from an ordered state, so in principle can only be seen in the ordered state </p>
+        </content>
+    </div>
+</section>
+
+<section class="blank" id="LSWTRev_summary">
+    <div class="grid-wrapper">
+        <div class="header">
+            <div class="logo"></div>
+            <div class="section">Linear Spin Wave Theory</div>
+        </div>
+        <content>
+            <h2>Linear Spin Wave Theory</h2>
+            <p> We'll now derive the spin wave dispersion for a ferromagnet in linear spin wave theory </p>
+            <p> The steps involved in the derivation are: </p>
+                <p class="fragment" style="margin-left: 40px">
+                1. Beginning with a spin Hamiltonian, express the spin operator vector $\mathbf{S}_i = (\hat{S}_i^x, \hat{S}_i^y, \hat{S}_i^z)$ as
+                     the ladder operators $(\hat{S}_i^+, \hat{S}_i^-, \hat{S}_i^z)$
+                <p class="fragment" style="margin-left: 40px">
+                2. Map the raising (lowering) operators to bosonic anihilation (creation) operators $a^{\dagger}$ ($a$) via the 
+                     <it>Holstein-Primakoff transformation</it>.
+                </p>
+                <p class="fragment" style="margin-left: 40px">
+                3. The transformed Hamiltonian is a series expansion in powers of $a^{\dagger}, a$, but in linear spin wave theory we take 
+                     only the terms which are <it>linear</it> in $a^{\dagger}a$.
+                </p>
+                <p class="fragment" style="margin-left: 40px">
+                4. Fourier transform the Hamiltonian.
+                </p>
+                <p class="fragment" style="margin-left: 40px">
+                5. Diagonalise the Hamiltonian, ensuring that the commutation relation of the bosonic operators are respected (for two-sublattice
+                     system such as antiferromagnetic, the <it>Bogoliubov transformation</it> can be used for this purpose).
+                </p>
+        </content>
     </div>
 </section>
 
@@ -16,12 +68,18 @@
         </div>
         <content>
             <h3>Heisenberg Hamiltonian:</h3>
-            $$ \mathcal{H} = \sum_{ij} J_{ij} \mathbf{S}_i\cdot\mathbf{S}_j $$
-            <p> This will lead at low temperatures to a magnetically ordered state </p>
+            <p> The Hamiltonian of an ordered magnet can be expressed in terms of the spin operators for site $i$, $\mathbf{S}_i$. </p>
+            <p> For example, the Heisenberg Hamiltonian is: </p>
+            $$ \mathcal{H} = \sum_{mn, ij} J_{mn, ij} \mathbf{S}_i\cdot\mathbf{S}_j $$
+            <p> where $J_{mn, ij}$ is the exchange interaction with the indices $i$ and $j$ running over magnetic atoms within a single 
+                magnetic unit cell, and $m$ and $n$ label different unit cells. </p>
             <p> $\mathbf{S}_i=(\hat{S}_i^x, \hat{S}_i^y, \hat{S}_i^z)$ is the spin operator for site $i$, 
-                which can be re-expressed in terms of the ladder operators $\hat{S}_i^+, \hat{S}_i^-, \hat{S}_i^z$ </p>
-            <p> A spin-wave (magnon) is an excitation from the ordered ground state $|m=S\rangle$ </p>
-            <p> E.g. $\hat{S}^-|m=S\rangle = \sqrt{(S+m)(S+1-m)}|S=m-1\rangle$ excites one magnon </p>
+                which can be re-expressed in terms of the ladder operators $\hat{S}_i^+, \hat{S}_i^-, \hat{S}_i^z$:</p>
+            $$ \begin{align}
+               \mathcal{H} &= \sum_{mn, ij} J_{mn, ij} (\hat{S}_i^x\hat{S}_j^x + \hat{S}_i^y\hat{S}_j^y + \hat{S}_i^z\hat{S}_j^z) \\
+                           &= \sum_{mn, ij} J_{mn, ij} ((\hat{S}_i^+\hat{S}_j^- + \hat{S}_i^-\hat{S}_j^+)/4 + \hat{S}_i^z\hat{S}_j^z)
+               \end{align} $$
+            <p> since $\hat{S}^{\pm} = \hat{J}^x \pm i\hat{S}^y$ so $\hat{S}^{x,y} = \frac{\sqrt{\pm 1}}{2}(\hat{S}^+ \pm \hat{S}^-)$
         </content>
     </div>
 </section>
@@ -35,9 +93,18 @@
         <content>
             <h3>Holstein-Primakoff transformation</h3>
             <p> To determine the magnons (magnetic normal modes), we map the excitations to a simple harmonic operator </p>
-            <p> map the ladder operators $\hat{S}^{\pm}$ to boson creation and anihilation operators $a^{\dagger}$ and $a$ </p>
-            <p> map the fully polarised (ordered) state $|m=S\rangle$ is the vacuum state $|n=0\rangle$ </p>
-            <p> E.g. $\hat{S}^-|m=S\rangle = \sqrt{(S+m)(S+1-m)}|S=m-1\rangle$ maps to $a^{\dagger}|n=0\rangle = |n=1\rangle$ excites one magnon </p>
+            <p> The ordered ground state is the state with the maximum azimuthal quantum number $|m = S\rangle$, and the action of the ladder operator is:</p>
+            $$ \hat{S}^{\pm}|m\rangle = \sqrt{(S\mp m)(S+1\pm m)} |m\pm 1\rangle $$
+            <p> We now map the ladder operators to boson creation and anihilation operators $a^{\dagger}$ and $a$: </p>
+            $$ a|n\rangle \sqrt{n} |n-1\rangle \qquad a^{\dagger}|n\rangle = \sqrt{n+1}|n+1\rangle $$
+            <p> mapping also the ordered state $|m=S\rangle$ to the vacuum state $|n=0\rangle$, such that the action of $a^{\dagger}|n\rangle$ is 
+                analogous to $\hat{S}^-|S\rangle$ </p>
+            <p> So, substituting $m = S - n$ and re-arranging the ladder operator terms: </p>
+            $$ \begin{align}
+               \hat{S}^+|n\rangle &= \sqrt{(2Sn) (1 - \color{red}{\frac{n-1}{2S}})} |n-1\rangle \\
+               \hat{S}^-|n\rangle &= \sqrt{2S(n+1) (1 - \color{red}{\frac{n-1}{2S}})} |n+1\rangle
+               \end{align} $$
+            <p> In <it>linear</it> spin wave theory we ignore the terms in red </p>
         </content>
     </div>
 </section>
@@ -49,214 +116,130 @@
             <div class="section">Linear Spin Wave Theory</div>
         </div>
         <content>
+            <p> Using the identities $n = aa^{\dagger}$ and $S^{z}|m\rangle = m|m\rangle$ we have the following mappings </p>
+            $$ \begin{align}
+               \hat{S}_i^+ &= a_i\sqrt{2S_i} \\
+               \hat{S}_i^- &= a_i^{\dagger}\sqrt{2S_i} \\
+               \hat{S}_i^z &= S_i - aa^{\dagger}
+               \end{align} $$
+            <p> So the Heisenberg Hamiltonian (ignoring terms which are not linear in $a a^{\dagger}$) is now:</p>
+            $$ \mathcal{H} = \sum_{mn, ij} J_{mn, ij} \left[ \frac{\sqrt{S_i S_j}}{2} \left( a_i a_j^{\dagger} + a_i^{\dagger}a_j \right) - S_i a_ia_i^{\dagger} - S_j a_ja_j^{\dagger} \right] $$
+        </content>
+    </div>
+</section>
+
+<section class="blank" id="LSWRev4">
+    <div class="grid-wrapper">
+        <div class="header">
+            <div class="logo"></div>
+            <div class="section">Linear Spin Wave Theory</div>
+        </div>
+        <content>
             <h3>Fourier transformation</h3>
-            <p> The terms in the Hamiltonian couples sites $i$ and $j$ in real space so to make it separable we Fourier transform into momentum space </p>
-            <p> This leaves a square matrix $\mathcal{H}(\mathbf{q})$ </p>
-            <p> At each $\mathbf{q}$-point of interest this matrix and its eigenvalues can be calculated which gives the magnon energies $\omega(\mathbf{q})$ </p>
-            <p> The eigenvectors of $\mathcal{H}(\mathbf{q})$ can be used to calculate the spin-spin correlation function and hence the neutron scattering cross-section </p>
+            <p> In the expression for the spin Hamiltonian we have a sum over <it>all</it> magnetic sites.
+                This can be simplified to just sites $i$ and $j$ within the magnetic unit cell by Fourier transforming the Hamiltonian.
+                The Fourier transform of the Holstein-Primakoff operator is: </p>
+            $$ a^{(\dagger)} = \frac{1}{\sqrt{N}} \sum_{\mathbf{q}} \exp (-i\mathbf{q}\cdot\mathbf{r}) b_{\mathbf{q}}^{(\dagger)}  $$
+            <p> Let us take one term from the Hamiltonian, $\sum_{mn, ij} J_{mn, ij} a_i a_j^{\dagger}$; its Fourier transform is: </p>
+            $$ \mathrm{FT}\left[ \sum_{mn, ij} J_{mn, ij} a_i a_j^{\dagger} \right] = 
+               \frac{1}{N} \sum_{mn, ij} \sum_{\mathbf{q}, \mathbf{q}'} J_{mn, ij} \exp(-i\mathbf{q}\cdot\mathbf{r}_m)  
+                                  \exp(-i\mathbf{q}'\cdot\mathbf{r}_n) b_{i,\mathbf{q}} b_{j,\mathbf{q}'}^{\dagger} $$
+            <p> The periodicity of the crystal implies that the exchange interaction is translationally invariant such that $J_{mn, ij} = J_{ij}(\mathbf{d})$
+                where $\mathbf{d} = \mathbf{r}_m - \mathbf{r}_n$ so the Fourier transform becomes: </p>
+            $$ \frac{1}{N} \sum_{\mathbf{q}, \mathbf{q}'} \left[ \sum_{ij} J_{ij}(\mathbf{d}) \exp(-i\mathbf{q}'\cdot\mathbf{d}) \right] 
+                \exp(-i(\mathbf{q}-\mathbf{q}')\cdot\mathbf{r}_{m}) b_{i,\mathbf{q}} b_{j,\mathbf{q}'}^{\dagger} $$ 
+            <p> where the terms in the square brackets is the Fourier transform of the exchange interactions $J_{ij}(\mathbf{q})$ where the
+                indices $ij$ label only sites within the magnetic unit cell.
+                We now use the identity $(1/N) \sum_{\mathbf{q}, \mathbf{q}'} \exp (-i(\mathbf{q}-\mathbf{q}')\cdot\mathbf{r}) = \delta_{\mathbf{q}\mathbf{q}'}$
+                to obtain: </p>
+            $$ \mathrm{FT}\left[ \sum_{mn, ij} J_{mn, ij} a_i a_j^{\dagger} \right] = \sum_{ij} J_{ij}(\mathbf{q}) b_{i,\mathbf{q}} b_{j,\mathbf{q}}^{\dagger} $$
         </content>
     </div>
 </section>
 
-<section class="subsection color--radiant" id="LSWTReview">
-    <div class="grid-wrapper">
-        <div class="logo"></div>
-        <h1>Linear Spin Wave Theory</h1>
-        <div class="description">
-            Full derivation for reference
-        </div>
-    </div>
-</section>
-
-<section class="blank" id="QM_ham">
+<section class="blank" id="LSWRev5a">
     <div class="grid-wrapper">
         <div class="header">
             <div class="logo"></div>
-            <div class="section">Spin Chain Hamiltonian</div>
+            <div class="section">Linear Spin Wave Theory</div>
         </div>
         <content>
-            <h2>Heisenberg Hamiltonian of a chain on Bravais lattice:</h2>
-            $$ \mathcal{H} = \sum_{i,d} J(d) \mathbf{S}_i \cdot \mathbf{S}_{i+d}$$
-            <p>After substitution, changing to a rotating co-ordinate system  and a bit of trigonometry we get:</p>
-            $$ \begin{align}
-            \mathcal{H} = & \sum_{i,j} J(\mathbf{d}) \left( S_i^\eta S_j^\eta + \sin (\mathbf{Q} \cdot \mathbf{d}_{i,j})(S_i^\mu S_j^\xi - S_i^\xi S_j^\eta \right) \right) + \\
-            & \cos(\mathbf{Q}\cdot \mathbf{d}_{i,j} \right) \left( S_i^\mu S_j^\mu + S_i^\xi S_j^\xi\right)
-            \end{align}$$
+            <p> So the Fourier transformed Hamiltonian becomes: </p>
+            $$
+            \mathcal{H}_{\mathbf{q}} = \sum_{ij} J_{ij} \left[ \frac{\sqrt{S_i S_j}}{2} 
+               \left( b_{i,\mathbf{q}}b_{j,\mathbf{q}}^\dagger + b_{i,\mathbf{q}}^\dagger b_{j,\mathbf{q}} \right)
+                - S_i b_{i,\mathbf{q}}b_{j,\mathbf{q}}^\dagger - S_i b_{i,\mathbf{q}}^\dagger b_{j,\mathbf{q}} \right]
+            $$
+            <p> Which can be expressed as a matrix equation: </p>
+            $$ \mathcal{H}_{\mathbf{q}} = 
+                \left( \begin{array}{cccccc} b_1^{\dagger} & \dots & b_N^{\dagger} & b_1 & \dots & b_N \end{array} \right)
+                \left( \begin{array}{cc} \left[\frac{\sqrt{S_i S_j}}{2} J_{ij}(\mathbf{q}) - \delta_{ij} S_i J_{ij}(0) \right] & 0 \\ 0 & 
+                                         \left[\frac{\sqrt{S_i S_j}}{2} J_{ij}(\mathbf{q}) - \delta_{ij} S_i J_{ij}(0) \right]
+                       \end{array} \right)
+                \left( \begin{array}{c} b_1 \\ \vdots \\ b_N \\ b_1^{\dagger} \\ \vdots \\ b_N^{\dagger} \end{array} \right)
+            $$
+            <p> where the square brackets denote a block matrix and we have omitted the $\mathbf{q}$ indices on the bosonic operators. </p>
         </content>
     </div>
 </section>
 
-<section class="blank" id="ladderOperators">
+<section class="blank" id="LSWRev5b">
     <div class="grid-wrapper">
         <div class="header">
             <div class="logo"></div>
-            <div class="section">Applying ladder operators</div>
+            <div class="section">Linear Spin Wave Theory</div>
         </div>
         <content>
-            <p>Spin state with a small field along the $z$ axis:</p>
-            $$
-            \lvert n \rangle \equiv S, m = S -n
-            $$
-            <p>Ladder operators for a harmonic oscillator:</p>
-            $$ \begin{align}
-            a^+ \lvert n \rangle  & = \sqrt{n+1} \lvert n + 1 \rangle \\
-            a \lvert n \rangle    & = \sqrt{n} \lvert n -1 \rangle \\
-            \left[ a, a^+ \right] & = 1
-            \end{align}$$
-            <p>Ladder operators for spin:</p>
-            $$ \begin{align}
-            S^- \lvert n \rangle  & = \sqrt{2S}\sqrt{1 - \frac{n}{2S}}\sqrt{n+1} \lvert n + 1 \rangle \\
-            S^+ \lvert n \rangle  & = \sqrt{2S}\sqrt{1 - \frac{n - 1}{2S}}\sqrt{n} \lvert n -1 \rangle \\
-            \end{align}$$
+            <p> Setting: </p>
+            $$ \mathbf{b} = \left( \begin{array}{c} b_1 \\ \vdots \\ b_N \\ b_1^{\dagger} \\ \vdots \\ b_N^{\dagger} \end{array} \right) $$
+            <p> The Hamiltonian is: </p>
+            $$ \mathcal{H}_{\mathbf{q}} = \mathbf{b}^{\top} h_{\mathbf{q}} \mathbf{b} $$
+            <p> With the matrix $h_{\mathbf{q}}$ as shown previously and $\top$ indicates a complex conjugate transpose. </p>
+            <p> At each $\mathbf{q}$ the eigenvalues of the matrix $h_{\mathbf{q}}$ will be the magnon energies $\omega(\mathbf{q})$ and
+                the eigenvalues can be used to calculate the spin-spin correlation function and hence the neutron scattering cross-section. </p>
         </content>
     </div>
 </section>
 
-<section class="quote color--midnight" id="SWApprox">
-    <div class="grid-wrapper">
-        <div class="logo"></div>
-        <blockquote>
-            <p>
-                Assuming $\langle n \rangle \ll S$ the coupled harmonic oscillator is a good model. The excited states of the harmonic oscillator are magnons.
-            </p>
-            <hr>
-            <cite>Spin wave approximation</cite>
-        </blockquote>
-    </div>
-</section>
-
-<section class="blank" id="HPTransform">
+<section class="blank" id="LSWRev6">
+    <style>
+    .container{
+        display: flex;
+    }
+    .col{
+        flex: 1;
+    }
+    </style>
     <div class="grid-wrapper">
         <div class="header">
             <div class="logo"></div>
-            <div class="section">Remembering ladder operators</div>
+            <div class="section">Linear Spin Wave Theory</div>
         </div>
         <content>
-            <h3>Holstein–Primakoff transformation</h3>
-            <p>Ladder operators for spin:</p>
-            $$ \begin{align}
-            S^-   & = \sqrt{2S} a^+ \hat{f}  \\
-            S^+   & = \sqrt{2S} \hat{f} a
-            \end{align}$$
-            <p>Where:</p>
-            $$ \hat{f} = \sqrt{1 - \frac{n}{2S}} $$
-            <p>Applying the transformation, $S$ in boson creation and annihilation operators:</p>
-            $$ \begin{align}
-            S_i^\eta  & = \frac{1}{2}(S^+ + S^- ) = \sqrt{S/2}\hat{f}(a^+_i + a_i)  \\
-            S_i^\mu   & = -\frac{i}{2}(S^+ - S^- ) = \sqrt{S/2}\hat{f}(a^+_i - a_i) \\
-            S_i^\xi   & = S - n_i = S - a_i^+a_i
-            \end{align}$$
-        </content>
-    </div>
-</section>
-
-<section class="blank" id="QuadraticForm1">
-    <div class="grid-wrapper">
-        <div class="header">
-            <div class="logo"></div>
-            <div class="section">Quadratic form</div>
-        </div>
-        <content>
-            <p>So:</p>
-            $$ S_i^\eta S_j^\eta = S/2 \hat{f}_i \hat{f}_j (a^+_i + a_i)(a^+_j + a_j) $$
-            <p>etc...</p>
-            <p>We have a hamiltonian of boson operators which can be expanded in powers of $1/S$ to obtain:</p>
-            $$
-            \mathcal{H} = E_0 + \mathcal{H}_1 + \mathcal{H}_2 + \mathcal{H}_3 + \mathcal{H}_4 ...
-            $$
-            <p>Where $E_0$ is the classical result which is derived in many textbooks:</p>
-            $$
-            E_0 = S^2 \sum_{i, \mathbf{d}} J(\mathbf{d})\cos (\mathbf{Q} \cdot \mathbf{d})
-            $$
-        </content>
-    </div>
-</section>
-
-<section class="blank" id="QuadraticForm2">
-    <div class="grid-wrapper">
-        <div class="header">
-            <div class="logo"></div>
-            <div class="section">Quadratic form</div>
-        </div>
-        <content>
-            <p>1 operator term:</p>
-            $$ \mathcal{H}_1 = S^{3/2} \sum_{i,j} \frac{i}{2} J(\mathbf{d}_{i,j}) \sin (\mathbf{Q} \cdot \mathbf{d}_{i,j})(a_i^+ - a_i + a_j - a_j^+) $$
-            <aside class="notes">
-                Actually 1st operator term vanishes if the spin state minimises E0
-            </aside>
-            <p>2 operator term:</p>
-            $$\begin{align}
-            \mathcal{H}_2  = S \sum_{i,j} \frac{1}{2} J(\mathbf{d}_{i,j}) &( (1 - \cos (\mathbf{Q} \cdot \mathbf{d}_{i,j}))(a_ia_j + a_ia_j) \\
-            & + (1 + \cos (\mathbf{Q} \cdot \mathbf{d}_{i,j}))(a_ia_j^+ + a_i^+a_j) \\
-            & - 2\cos (\mathbf{Q} \cdot \mathbf{d}_{i,j})(a_i^+a_i + a_j^+a_j) )
-            \end{align}$$
-            <aside class="notes">
-                Actually 1st operator term vanishes if the spin state minimises E0.
-                The spin dynamics is contained in the 2 operator term
-            </aside>
-            <p>3 operator term:</p>
-            <ul>
-                <li>Non-zero in non-collinear structures</li>
-                <li>Can change the ground state</li>
-            </ul>
-            <p>4 operator term:</p>
-            <ul>
-                <li>Renormalizes the magnon dispersion</li>
-                <li>Gives finite magnon lifetime</li>
-            </ul>
-        </content>
-    </div>
-</section>
-
-<section class="blank" id="Diagonalization2">
-    <div class="grid-wrapper">
-        <div class="header">
-            <div class="logo"></div>
-            <div class="section">Diagonalization of the quadratic form</div>
-        </div>
-        <content>
-            <p>Luckily, $\mathcal{H}_2$ can be written in matrix form:</p>
-            $$\mathcal{H}_2 = \sum_\mathbf{k} \mathbf{x}^\dagger H(\mathbf{k}) \mathbf{x} $$
-            <p>Where $\mathbf{x}$ is a vector of Boson operators:</p>
-            $$ \mathbf{x} = \begin{bmatrix} a_\mathbf{k} \\ a_{-\mathbf{k}}^+\end{bmatrix}$$
-            <p>And the matrix of the Hamiltonian has the form:</p>
-            $$ H = \begin{bmatrix} A & B \\ B & A \end{bmatrix} $$
-            <br>
-            $$\begin{align}
-            A & = J(\mathbf{k}) + J(\mathbf{k} + \mathbf{Q})/2 + J(\mathbf{k} - \mathbf{Q})/2 - 2J(\mathbf{Q}) \\
-            B & = J(\mathbf{k}) - J(\mathbf{k} + \mathbf{Q})/2 - J(\mathbf{k} - \mathbf{Q})/2
-            \end{align}$$
-        </content>
-    </div>
-</section>
-
-<section class="blank" id="Diagonalization3">
-    <div class="grid-wrapper">
-        <div class="header">
-            <div class="logo"></div>
-            <div class="section">Diagonalization of the quadratic form</div>
-        </div>
-        <content>
-            <p>In Bogoliubov method, we define new operator $b$ with the following transformation:
-            </p>
-            $$ \begin{align}
-            b   & = ua + va^+ \\
-            b^+ & = ua^+ +va
-            \end{align}$$
-            <p>The new operator has to fulfill the commutation relations:</p>
-            $$ \begin{align}
-            [b, b^+] & = 1 \\
-            u^2 + v^2 & = 1
-            \end{align}$$
-            <p>With the right parameter choice:</p>
-            $$
-            \mathcal{H}_2 = \sum_\mathbf{k} \omega_\mathbf{k} \left( b^+b + \frac{1}{2} \right)
-            $$
-            <p>And the spin wave dispersion:</p>
-            $$
-            \omega_\mathbf{k} = \sqrt{A^2 - B^2}
-            $$
-            <p>The above calculation is equivalent to solving the eigenvalue problem of $gH$, where $g = [x, x^\dagger]$ commutator matrix.</p>
+            <h3> Heisenberg Ferromagnet </h3>
+            <div class="container">
+              <div class="col">
+                <p> For a ferromagnet, there is only one magnetic atom in the unit cell, so the Hamiltonian is diagonal already: </p>
+                $$ \mathcal{H}_{\mathbf{q}} =
+                    \left( \begin{array}{cc} b^{\dagger} & b \end{array} \right)
+                    \left( \begin{array}{cc} \frac{S}{2} J(\mathbf{q}) - SJ & 0 \\ 0 & \frac{S}{2} J(\mathbf{q}) - SJ \end{array} \right)
+                    \left( \begin{array}{c} b \\ b^{\dagger} \end{array} \right) $$
+                <p> The Fourier transform is just: </p>
+                $$ \begin{align}
+                   J(\mathbf{q}) &= J \left( \exp(-i\mathbf{q}\cdot\mathbf{d}) + \exp(i\mathbf{q}\cdot\mathbf{d}) \right) \\
+                                 &= 2 J \cos (\mathbf{q}\cdot\mathbf{d}) 
+                   \end{align} $$
+                <p> So we obtain $\omega(\mathbf{q}) = JS \left( \cos(\mathbf{q}\cdot\mathbf{d}) - 1 \right)$ </p>
+                <p> In general, however, the Hamiltonian is not diagonal and so must be diagonalised. </p>
+                <p> This can be done using the Bogoliubov transformation for an antiferromagnet </p>
+                <p> SpinW uses a more general method due to Colpa, as explained in the SpinW paper </p>
+              </div>
+              <div class="col">
+                <object data="images/testAnimate.svg" type="image/svg+xml" style="margin: auto; width: 90%; border: 0px solid green; display: block;">
+                    <img src="images/testAnimate.png" />
+                </object>
+              </div>
+            </div>
         </content>
     </div>
 </section>
@@ -268,16 +251,30 @@
             <div class="section">Spin-spin correlation function</div>
         </div>
         <content>
-            <p>Now we have $\omega_\mathbf{k}$ and half the story. Remember for neutron scattering: </p>
+            <p>Now we have $\omega_\mathbf{q}$ and half the story. Remember for neutron scattering: </p>
             <br>$$
-            \frac{d^2\sigma}{d\Omega dE} = C \cdot F^2(\mathbf{K}) \sum_{\alpha , \beta}(\delta_{\alpha , \beta} - \hat{k}_\alpha\hat{k}_\beta ) (gSg^T)^{\alpha , \beta} (\mathbf{k}, \omega)
+            \frac{d^2\sigma}{d\Omega dE} \propto F^2(\mathbf{Q}) \sum_{\alpha, \beta}(\delta_{\alpha\beta} - \hat{q}_\alpha\hat{q}_\beta ) S^{\alpha\beta} (\mathbf{q}, \omega)
             $$
             <p>With the correlation function:</p>
             <br>$$
-            S^{\alpha \beta}(\mathbf{k},\omega) = \frac{1}{2\pi\hbar}\int dt e^{-i \omega t} \left< S^\alpha (\mathbf{k}, 0) S^\beta (-\mathbf{k}, t) \right>
+            S^{\alpha \beta}(\mathbf{k},\omega) = \frac{1}{2\pi\hbar}\int dt e^{-i \omega t} \langle S^\alpha (\mathbf{q}, 0) S^\beta (-\mathbf{q}, t) \rangle
             $$
+            <p> $\langle S^\alpha(\mathbf{q}, t)\rangle$ is related to the Fourier transform of the eigenvectors of the Hamiltonian at $\mathbf{q}$. </p>
         </content>
     </div>
 </section>
 
+<section class="blank" id="LSWRev7">
+    <div class="grid-wrapper">
+        <div class="header">
+            <div class="logo"></div>
+            <div class="section">Linear Spin Wave Theory</div>
+        </div>
+        <content>
+            <h3>References</h3>
+            <p>S. Toth and B. Lake, <it>J. Phys.: Condens. Matter</it> <b>27</b> 166002 (2015) <a href="https://arxiv.org/abs/1402.6069">arxiv:1402.6069</a> </p>
+            <p>S. Petit <it>Collection SFN</it> <b>12</b> 105-121 (2011) <a href="https://doi.org/10.1051/sfn/201112006">10.1051/sfn/201112006</a> </p>
+        </content>
+    </div>
+</section>
 
