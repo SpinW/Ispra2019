@@ -70,14 +70,14 @@
             <h3>Heisenberg Hamiltonian:</h3>
             <p> The Hamiltonian of an ordered magnet can be expressed in terms of the spin operators for site $i$, $\mathbf{S}_i$. </p>
             <p> For example, the Heisenberg Hamiltonian is: </p>
-            $$ \mathcal{H} = \sum_{mn, ij} J_{mn, ij} \mathbf{S}_i\cdot\mathbf{S}_j $$
-            <p> where $J_{mn, ij}$ is the exchange interaction with the indices $i$ and $j$ running over magnetic atoms within a single 
+            $$ \mathcal{H} = \sum_{mi, nj} J_{mi, nj} \mathbf{S}_i\cdot\mathbf{S}_j $$
+            <p> where $J_{mi, nj}$ is the exchange interaction with the indices $i$ and $j$ running over magnetic atoms within a single 
                 magnetic unit cell, and $m$ and $n$ label different unit cells. </p>
             <p> $\mathbf{S}_i=(\hat{S}_i^x, \hat{S}_i^y, \hat{S}_i^z)$ is the spin operator for site $i$, 
                 which can be re-expressed in terms of the ladder operators $\hat{S}_i^+, \hat{S}_i^-, \hat{S}_i^z$:</p>
             $$ \begin{align}
-               \mathcal{H} &= \sum_{mn, ij} J_{mn, ij} (\hat{S}_i^x\hat{S}_j^x + \hat{S}_i^y\hat{S}_j^y + \hat{S}_i^z\hat{S}_j^z) \\
-                           &= \sum_{mn, ij} J_{mn, ij} ((\hat{S}_i^+\hat{S}_j^- + \hat{S}_i^-\hat{S}_j^+)/4 + \hat{S}_i^z\hat{S}_j^z)
+               \mathcal{H} &= \sum_{mi, nj} J_{mi, nj} (\hat{S}_i^x\hat{S}_j^x + \hat{S}_i^y\hat{S}_j^y + \hat{S}_i^z\hat{S}_j^z) \\
+                           &= \sum_{mi, nj} J_{mi, nj} ((\hat{S}_i^+\hat{S}_j^- + \hat{S}_i^-\hat{S}_j^+)/4 + \hat{S}_i^z\hat{S}_j^z)
                \end{align} $$
             <p> since $\hat{S}^{\pm} = \hat{J}^x \pm i\hat{S}^y$ so $\hat{S}^{x,y} = \frac{\sqrt{\pm 1}}{2}(\hat{S}^+ \pm \hat{S}^-)$
         </content>
@@ -123,7 +123,7 @@
                \hat{S}_i^z &= S_i - aa^{\dagger}
                \end{align} $$
             <p> So the Heisenberg Hamiltonian (ignoring terms which are not linear in $a a^{\dagger}$) is now:</p>
-            $$ \mathcal{H} = \sum_{mn, ij} J_{mn, ij} \left[ \frac{\sqrt{S_i S_j}}{2} \left( a_i a_j^{\dagger} + a_i^{\dagger}a_j \right) - S_i a_ia_i^{\dagger} - S_j a_ja_j^{\dagger} \right] $$
+            $$ \mathcal{H} = \sum_{mi, nj} J_{mi, nj} \left[ \frac{\sqrt{S_i S_j}}{2} \left( a_i a_j^{\dagger} + a_i^{\dagger}a_j \right) - S_i a_ia_i^{\dagger} - S_j a_ja_j^{\dagger} \right] $$
         </content>
     </div>
 </section>
@@ -140,11 +140,11 @@
                 This can be simplified to just sites $i$ and $j$ within the magnetic unit cell by Fourier transforming the Hamiltonian.
                 The Fourier transform of the Holstein-Primakoff operator is: </p>
             $$ a^{(\dagger)} = \frac{1}{\sqrt{N}} \sum_{\mathbf{q}} \exp (-i\mathbf{q}\cdot\mathbf{r}) b_{\mathbf{q}}^{(\dagger)}  $$
-            <p> Let us take one term from the Hamiltonian, $\sum_{mn, ij} J_{mn, ij} a_i a_j^{\dagger}$; its Fourier transform is: </p>
-            $$ \mathrm{FT}\left[ \sum_{mn, ij} J_{mn, ij} a_i a_j^{\dagger} \right] = 
-               \frac{1}{N} \sum_{mn, ij} \sum_{\mathbf{q}, \mathbf{q}'} J_{mn, ij} \exp(-i\mathbf{q}\cdot\mathbf{r}_m)  
+            <p> Let us take one term from the Hamiltonian, $\sum_{mi, nj} J_{mi, nj} a_i a_j^{\dagger}$; its Fourier transform is: </p>
+            $$ \mathrm{FT}\left[ \sum_{mi, nj} J_{mi, nj} a_i a_j^{\dagger} \right] = 
+               \frac{1}{N} \sum_{mi, nj} \sum_{\mathbf{q}, \mathbf{q}'} J_{mi, nj} \exp(-i\mathbf{q}\cdot\mathbf{r}_m)  
                                   \exp(-i\mathbf{q}'\cdot\mathbf{r}_n) b_{i,\mathbf{q}} b_{j,\mathbf{q}'}^{\dagger} $$
-            <p> The periodicity of the crystal implies that the exchange interaction is translationally invariant such that $J_{mn, ij} = J_{ij}(\mathbf{d})$
+            <p> The periodicity of the crystal implies that the exchange interaction is translationally invariant such that $J_{mi, nj} = J_{ij}(\mathbf{d})$
                 where $\mathbf{d} = \mathbf{r}_m - \mathbf{r}_n$ so the Fourier transform becomes: </p>
             $$ \frac{1}{N} \sum_{\mathbf{q}, \mathbf{q}'} \left[ \sum_{ij} J_{ij}(\mathbf{d}) \exp(-i\mathbf{q}'\cdot\mathbf{d}) \right] 
                 \exp(-i(\mathbf{q}-\mathbf{q}')\cdot\mathbf{r}_{m}) b_{i,\mathbf{q}} b_{j,\mathbf{q}'}^{\dagger} $$ 
@@ -152,7 +152,7 @@
                 indices $ij$ label only sites within the magnetic unit cell.
                 We now use the identity $(1/N) \sum_{\mathbf{q}, \mathbf{q}'} \exp (-i(\mathbf{q}-\mathbf{q}')\cdot\mathbf{r}) = \delta_{\mathbf{q}\mathbf{q}'}$
                 to obtain: </p>
-            $$ \mathrm{FT}\left[ \sum_{mn, ij} J_{mn, ij} a_i a_j^{\dagger} \right] = \sum_{ij} J_{ij}(\mathbf{q}) b_{i,\mathbf{q}} b_{j,\mathbf{q}}^{\dagger} $$
+            $$ \mathrm{FT}\left[ \sum_{mi, nj} J_{mi, nj} a_i a_j^{\dagger} \right] = \sum_{ij} J_{ij}(\mathbf{q}) b_{i,\mathbf{q}} b_{j,\mathbf{q}}^{\dagger} $$
         </content>
     </div>
 </section>
@@ -166,19 +166,21 @@
         <content>
             <p> So the Fourier transformed Hamiltonian becomes: </p>
             $$
-            \mathcal{H}_{\mathbf{q}} = \sum_{ij} J_{ij} \left[ \frac{\sqrt{S_i S_j}}{2} 
+            \mathcal{H}_{\mathbf{q}} = \sum_{ij} J_{ij}(\mathbf{q}) \left[ \frac{\sqrt{S_i S_j}}{2} 
                \left( b_{i,\mathbf{q}}b_{j,\mathbf{q}}^\dagger + b_{i,\mathbf{q}}^\dagger b_{j,\mathbf{q}} \right)
-                - S_i b_{i,\mathbf{q}}b_{j,\mathbf{q}}^\dagger - S_i b_{i,\mathbf{q}}^\dagger b_{j,\mathbf{q}} \right]
+                - S_i b_{i,\mathbf{q}}b_{i,\mathbf{q}}^\dagger - S_j b_{j,\mathbf{q}}^\dagger b_{j,\mathbf{q}} \right]
             $$
             <p> Which can be expressed as a matrix equation: </p>
             $$ \mathcal{H}_{\mathbf{q}} = 
                 \left( \begin{array}{cccccc} b_1^{\dagger} & \dots & b_N^{\dagger} & b_1 & \dots & b_N \end{array} \right)
-                \left( \begin{array}{cc} \left[\frac{\sqrt{S_i S_j}}{2} J_{ij}(\mathbf{q}) - \delta_{ij} S_i J_{ij}(0) \right] & 0 \\ 0 & 
-                                         \left[\frac{\sqrt{S_i S_j}}{2} J_{ij}(\mathbf{q}) - \delta_{ij} S_i J_{ij}(0) \right]
+                \left( \begin{array}{cc} \left[\frac{\sqrt{S_i S_j}}{2} J_{ij}(\mathbf{q}) - \delta_{ij} S_i J_{ij}(\mathbf{q}=0) \right] & 0 \\ 0 & 
+                                         \left[\frac{\sqrt{S_i S_j}}{2} J_{ij}(\mathbf{q}) - \delta_{ij} S_i J_{ij}(\mathbf{q}=0) \right]
                        \end{array} \right)
                 \left( \begin{array}{c} b_1 \\ \vdots \\ b_N \\ b_1^{\dagger} \\ \vdots \\ b_N^{\dagger} \end{array} \right)
             $$
             <p> where the square brackets denote a block matrix and we have omitted the $\mathbf{q}$ indices on the bosonic operators. </p>
+            <p> The off-diagonal blocks are only zero in this case because we are using the Heisenberg Hamiltonian. For anisotropic Hamiltonians
+                (e.g. $XXZ$ or Dzyaloshinskii-Moriya interactions), these blocks will not be zero </p>
         </content>
     </div>
 </section>
@@ -235,9 +237,10 @@
                 <p> SpinW uses a more general method due to Colpa, as explained in the SpinW paper </p>
               </div>
               <div class="col">
-                <object data="images/testAnimate.svg" type="image/svg+xml" style="margin: auto; width: 90%; border: 0px solid green; display: block;">
+                <object data="images/testAnimate.svg" type="image/svg+xml" style="margin: auto; width: 80%; border: 0px solid green; display: block;">
                     <img src="images/testAnimate.png" />
                 </object>
+                <img src="images/FMdispersion.png" style="margin-left:200px; width:50%" />
               </div>
             </div>
         </content>
@@ -271,6 +274,16 @@
             <div class="section">Linear Spin Wave Theory</div>
         </div>
         <content>
+            <h3>Summary</h3>
+            <p> Linear spin wave theory calculations requires: </p>
+            <ul style="margin-left: 40px">
+              <li> The exchange interactions </li>
+              <li> The magnetic structure </li>
+            </ul>
+            <p> It expands the spin ladder operators as a power series in bosonic creation/anihilation operators, keeping only linear terms </p>
+            <p> For each momentum transfer $\mathbf{q}$ a Hamiltonian matrix has to be diagonalised to obtain the magnon energies and spin-spin correlation functions </p>
+            <p> The size of the matrix is proportional to the number of magnetic atoms in the unit cell </p>
+            <p> So, larger (or more complex) magnetic structures require more memory; and more $\mathbf{q}$-points require longer processing time </p>
             <h3>References</h3>
             <p>S. Toth and B. Lake, <it>J. Phys.: Condens. Matter</it> <b>27</b> 166002 (2015) <a href="https://arxiv.org/abs/1402.6069">arxiv:1402.6069</a> </p>
             <p>S. Petit <it>Collection SFN</it> <b>12</b> 105-121 (2011) <a href="https://doi.org/10.1051/sfn/201112006">10.1051/sfn/201112006</a> </p>
