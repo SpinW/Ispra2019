@@ -7,12 +7,22 @@
 % 
 %
 % Edit this line with the location of the sqw file
-data_path = 'fe_redux';
-sqw_file = fullfile('sqw','iron.sqw');
+data_path = fullfile(pwd, 'fe_redux');
+studentDir = 'C:\Users\jrc-student\spinw';
+sqw_file = fullfile(studentDir, 'iron.sqw');
 
 % If the data file doesn't exist, create a fake version
 if ~exist(sqw_file, 'file')
     generate_iron	
+end
+
+if ~strcmp(lower(pwd), lower(studentDir))
+    if ~exist(studentDir)
+        mkdir(studentDir);
+    end
+    copyfile('./*.m',studentDir)
+    cd(studentDir)
+    error('Please re-run script from Local')
 end
 
 % Make a series of 1D cuts of the data
