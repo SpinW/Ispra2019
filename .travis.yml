@@ -2,34 +2,24 @@ language: node_js
 dist: xenial
 node_js:
   - 9
+  
 before_script:
   - export TRAVIS_REPO_NAME=${TRAVIS_REPO_SLUG#*/}
   - npm install -g decktape
+  
 script:
   - sleep 2m
   - decktape reveal http://www.spinw.org/$TRAVIS_REPO_NAME $TRAVIS_REPO_NAME.pdf
-after_success:
-  # Update the PDF
-  - git config --global user.email "travis@travis-ci.org"
-  - git config --global user.name "Travis CI"
-  - git remote rm origin
-  - git remote add origin https://$GH_TOKEN@github.com/SpinW/$TRAVIS_REPO_NAME.git
-  - git add $TRAVIS_REPO_NAME.pdf
-  - git commit -m 'Presentation update [ci skip]'
-  - git push origin HEAD:master
-  # Add to the homepage....
-  - cd ../
-  - git clone https://github.com/SpinW/spinw.github.io.git
-  - cd spinw.github.io
-  - git remote rm origin
-  - git remote add origin https://$GH_TOKEN@github.com/SpinW/spinw.github.io.git
-  - cd pages/_presentations
-  - cat ../../Pres_Template | awk '{gsub(/AAAA/,"'$TRAVIS_REPO_NAME'")}1' | awk '{gsub(/BBBB/,"'$TRAVIS_REPO_NAME'")}1' > $TRAVIS_REPO_NAME.md
-  - echo "" >> $TRAVIS_REPO_NAME.md
-  - cat ../../../$TRAVIS_REPO_NAME/README.md >> $TRAVIS_REPO_NAME.md
-  - git add $TRAVIS_REPO_NAME.md
-  - git commit -m 'Added a presentation [ci skip]'
-  - git push origin HEAD:master
+  
+before_deploy:
+  - cp presentation_base/src/deploy.sh ./
+  
+deploy:
+  provider: script
+  script: bash ./deploy.sh
+  skip_cleanup: true
+  on:
+    all_branches: true   
 env:
   global:
     secure: MX9oWkBOohqVbZWd5nPg72BJC6f4JozjlQFHM3igB4AL2zzk+yHluGH0/MJ0I33BHgIbYInV1069aUgn7pG/F38b/t++o7b9fG5Y8PWXWixOIWpK713f1awdAfgn1r5hWgxMI3X2DDGLXx2q2HwhM06o/QL1EtiwRfwDfIduJ9p1D8hARvq73UrrSYrds1NPQIvTAPnuyPXCTZAGhSCx4fBMo2Pr6PNDvaw7+PXan20Y/4ZlKw24AhglJPDCafOCg+6+g1j5b9KNKkg59uXg6NwbJZ9fwZDhgOasoRer2GDeSgUK1Yo+kZhyKQbjjyrOfIIToe2lqrH07h26ne1ky7PtPQMJmAY10dWgFELdh6RB/mJXJx0nCwvbUaWdYZBXcIGwah5+d8IFytH43Ap/qiB8hMLjlPXGu/L8ndQ1qQI9Gpvd59tGBbQ7Y2q3czSDTbeXDOxj5cTFU8AvC0x5XPVC1HMgUEn87jaWJtIh3Anu3cFKnaB7RuosBUpqRPnvS8WN8JcWPN5v8rtN0HWOANJoY7yMmPVM2xMM95hkIbA+sO/uBG096LRmtED+BAkweDNQamOWPxJJW8jIG2qIf0UwB9tUFBW97FgdXZspb0kiZhJFu+a4L3VmLatFREOofuyaKOz+qql/u6+NZ1fyEpccJInufTX6T64k4d8Ie74=
