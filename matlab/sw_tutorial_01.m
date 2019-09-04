@@ -58,7 +58,7 @@ plot(tri)
 % (equienergetic surface)
 % examine the plot and test different values of A0 with different signs
 
-A0 = -0.1;
+A0 = 0.1;
 
 tri.addmatrix('label','J1','value',1)
 tri.addmatrix('label','A','value',[0 0 0;0 0 0;0 0 A0])
@@ -70,7 +70,7 @@ tri.addcoupling('mat','J1','bond',1)
 tri.addaniso('A')
 
 % make good quality plot
-swpref.setpref('nmesh',0,'npatch',10)
+swpref.setpref('nmesh',1,'npatch',10)
 plot(tri,'range',[3 3 1/2],'cellMode','inside')
 
 
